@@ -1,2 +1,9 @@
 # WeSellArt
- Final project for DCSP. It is a website for selling pieces of art. 
+This is a website that allows users to buy different pieces of art.
+It is our final project for DCSP at MSU.
+
+## Authors
+* Will Storey
+* James Eustace
+* Elwood Simpson
+* Prajjwol Timilsina
