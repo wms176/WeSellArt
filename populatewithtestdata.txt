@@ -1,0 +1,12 @@
+INSERT INTO users (userID, username, email, password, firstName, LastName, address,city, state, zip, admin) VALUES ('0000000001','dave123', 'dave123@dave.com','testpass', 'dave', 'davidson', '123 lake road', 'Starkville', 'Mississippi','39759', FALSE);
+
+INSERT INTO users (userID, username, email, password, firstName, LastName, address,city, state, zip, admin) VALUES ('0000000002','adriadne1', 'adriadne@mail.com','testpass2', 'Adriadne', 'Admin', '124 pine street', 'Starkville', 'Mississippi','39759', TRUE);
+
+INSERT INTO users (userID, username, email, password, firstName, LastName, address,city, state, zip, admin) VALUES ('0000000003', 'bob987' , 'bob@imail.com', 'testpass3', 'Robert', 'Robertson', '125 mulberry road', 'Starkville', 'Mississippi','39759', FALSE);
+
+INSERT INTO art (artID, artist, title, creationDate, media, price, quantity) VALUES ('0000000001','Vincent Van gogh','starry night', '1889-06-01','oil on canvas', '500.15','1');
+
+INSERT INTO art (artID, artist, title, creationDate, media, price, quantity) VALUES ('0000000002','Maurizio Cattelan','Comedian', '2019-12-04','Banana on Wall', '120000.00','1');
+
+INSERT INTO art (artID, artist, title, creationDate, media, price, quantity) VALUES ('0000000003','Dave Davidson','A literal infants scribbling', '2020-01-01','Pastel', '5','200');
+
