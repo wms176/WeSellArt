@@ -56,9 +56,16 @@
 </head>
 
 <body>
+	<?php
+    	if(isset($_POST['submit'])){
+			
+
+
+
+	?>
 	<div class="header">
 		<div class="title">
-		<a href="main.html" ><h1>WeSellArt.com</h1></a>
+		<a href="index.html" ><h1>WeSellArt.com</h1></a>
 		<h3>We here at WeSellArt.com are dedicated to selling you quality* art at unreasonable prices.</h3>
 		<h6>*We do not ensure the quality of any artwork.</h6>
 		</div>
@@ -71,30 +78,36 @@
 	
 	</div>
 	<div class="main">
-		<h3>Please Enter Shipping Address:</h3>
+		<h3>Please Enter Username:</h3>
 		<br>
-		<h4>Street</h4>
+		<input type="text" name= "username" style="width:200px;"></input>
 		<br>
-		<input type="text" style="width:200px;"></input>
+		<h3>Please Enter First Name:</h3>
 		<br>
-		<h4>City</h4>
+		<input type="text" name= "firstName" style="width:200px;"></input>
 		<br>
-		<input type="text" style="width:200px;"></input>
+		<h3>Please Enter Last Name:</h3>
 		<br>
-		<h4>State</h4>
+		<input type="text" name= "lastName" style="width:200px;"></input>
 		<br>
-		<input type="text" style="width:200px;"></input>
+		<h3>Please Enter Email:</h3>
 		<br>
-		<h4>Country</h4>
+		<input type="text" name= "email" style="width:200px;"></input>
 		<br>
-		<input type="text" style="width:200px;"></input>
+		<h3>Please Confirm Email:</h3>
 		<br>
-		<h4>Zip Code</h4>
+		<input type="text" name= "confirmEmail" style="width:200px;"></input>
 		<br>
-		<input type="text" style="width:200px;"></input>
+		<h3>Please Enter Password:</h3>
+		<br>
+		<input type="text" name="password" style="width:200px;"></input>
+		<br>
+		<h3>Please Confirm Password:</h3>
+		<br>
+		<input type="text" name="confirmPass" style="width:200px;"></input>
 		<br>
 		<br>
-		<input class="submit" type="submit" style="width:200px;" onclick="window.location.href='editbillingdetails.html'" value="Continue"></input>
+		<input class="submit" name="Continue" type="submit" style="width:200px;" onclick="window.location.href='editshippingdetails.html'" value="Continue"></input>
 		
 	</div>
 </body>

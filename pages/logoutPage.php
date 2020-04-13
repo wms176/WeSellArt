@@ -47,7 +47,6 @@
 				width: 100%;
 				height: 1000px;
 				top:201px;
-				text-align:center;
 			}
 			
 			
@@ -56,46 +55,29 @@
 </head>
 
 <body>
+	<?php
+    session_start();
+    session_unset();
+    if(session_destroy()) {
+      header("location: loginPage.php");
+    }
+  ?>
 	<div class="header">
 		<div class="title">
-		<a href="main.html" ><h1>WeSellArt.com</h1></a>
+		<a href="index.html" ><h1>WeSellArt.com</h1></a>
 		<h3>We here at WeSellArt.com are dedicated to selling you quality* art at unreasonable prices.</h3>
 		<h6>*We do not ensure the quality of any artwork.</h6>
 		</div>
 		<div class="useroptions">
 		
 
-		<input class="submit" type="submit" onclick="window.location.href='login.html'" value="Login"></input>
+		<input class="submit" type="submit" onclick="window.location.href='loginPage.php'" value="Login"></input>
 
 	
 	
 	</div>
 	<div class="main">
-		<h3>Please Enter Billing Information:</h3>
-		
-		<br>
-		<h4>Card Holder's Name</h4>
-		<br>
-		<input type="text" style="width:200px;"></input>
-		<br>
-		<h4>Card Number</h4>
-		<br>
-		<input type="text" style="width:200px;"></input>
-		<br>
-		<h4>Expiration</h4>
-		
-		<h5>Month / Year</h5>
-		<br>
-		<input type="text" style="width:100px;"></input>
-		<input type="text" style="width:100px;"></input>
-		<br>
-		<h4>Security Code</h4>
-		<br>
-		<input type="text" style="width:50px;"></input>
-		<br>
-
-		<br>
-		<input class="submit" type="submit" style="width:200px;" onclick="window.location.href='account.html'" value="Continue"></input>
+		<h2>You have been Logged Out</h2>
 		
 	</div>
 </body>

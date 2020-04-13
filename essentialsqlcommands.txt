@@ -11,7 +11,7 @@ password is a placeholder, which will vary based on what hashing method we use. 
 
 */
 CREATE TABLE users (
-  userID INT(10),
+  userID INT(10) auto_increment,
   username VARCHAR(10),
   email VARCHAR(254),
   password VARCHAR(32),
@@ -32,7 +32,7 @@ everything else is set arbitrarily
 note I had to change medium to media because medium is a keyword in sql.
 */
 CREATE TABLE art(
-  artID INT(10),
+  artID INT(10) auto_increment,
   artist VARCHAR(50),
   title VARCHAR(50),
   creationDate DATE,

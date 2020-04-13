@@ -74,7 +74,7 @@
 				border-top-style:solid;
 				border-bottom-style:solid;
 				border-width:5px;
-				width:20%;
+				width:18%;
 				height:100px;
 			}
 			
@@ -85,7 +85,7 @@
 <body>
 	<div class="header">
 		<div class="title">
-		<a href="main.html" ><h1>WeSellArt.com</h1></a>
+		<a href="index.html" ><h1>WeSellArt.com</h1></a>
 		<h3>We here at WeSellArt.com are dedicated to selling you quality* art at unreasonable prices.</h3>
 		<h6>*We do not ensure the quality of any artwork.</h6>
 		</div>
@@ -100,14 +100,14 @@
 		
 		<input class="submit" type="submit" onclick="window.location.href='logout.html'" value="Logout"></input>
 		<br><br>
-		<input class="submit" type="submit" onclick="window.location.href='account.html'" value="View Account"></input>
 		
-		<input class="submit" type="submit" onclick="window.location.href='vieworders.html'" value="View Orders"></input>
+		<input class="submit" type="submit" onclick="window.location.href='account.html'" value="View Account"></input>
 		
 		</div>
 	
 	</div>
 	<div class="main">
+		<!-- IF NOT LOGGED IN REDIRECT TO LOGIN-->
 		<div class="sidebar">
 			<h3 style="text-align:center;"> Search </h3>
 			<input type="text" style="width:80%; margin:auto; position: relative; right:2px; left:2px;"></input>
@@ -119,51 +119,30 @@
 				  <option value="ascend">Ascending</option>
 				  <option value="descend">Descending</option>
 				</select><br>
-			  <input type="radio" id="name" name="sort" value="name">
-			  <label for="name">Name</label><br>
-			  <input type="radio" id="price" name="sort" value="price">
-			  <label for="price">Price</label><br>
-			  <input type="radio" id="artist" name="sort" value="artist">
-			  <label for="artist">Artist</label>
+			  <input type="radio" id="orderid" name="sort" value="orderid">
+			  <label for="orderid">Order ID</label><br>
+			  <input type="radio" id="orderdate" name="sort" value="orderdate">
+			  <label for="price">Order Date</label><br>
+			  
+			  <!--IFF ADMIN-->
+			  <input type="radio" id="username" name="sort" value="username">
+			  <label for="username">Username/*ONLY IF ADMIN*/</label><br>
 			</form>
 		</div>
 		<div class="listingtable">
 			<table class="actualtable">
 				
 				<tr>
-					<td class="image"><img src="images/royaltyfreeart.jpg" alt="Picture of Art" width="100%"></td>
-					<td class="artname">Artname</td>
-					<td class="artistname">Artist</td>
-					<td class="artdesc">description</td>
-					<td class="artprice">Price</td>
-					<td class="carttable"><input class="addtocart" type="submit" onclick="window.location.href = 'itemview.html'" value="View Item"></input><br><input class="addtocart" type="submit" value="Add to Cart"></input></td>
-				</tr>
-				<tr>
-					<td class="image"><img src="images/royaltyfreeart.jpg" alt="Picture of Art" width="100%"></td>
-					<td class="artname">Artname</td>
-					<td class="artistname">Artist</td>
-					<td class="artdesc">description</td>
-					<td class="artprice">Price</td>
-					<td class="carttable"><input class="addtocart" type="submit" onclick="window.location.href = 'itemview.html'" value="View Item"></input><br><input class="addtocart" type="submit" value="Add to Cart"></input></td>
-				</tr>
-				<tr>
-					<td class="image"><img src="images/royaltyfreeart.jpg" alt="Picture of Art" width="100%"></td>
-					<td class="artname">Artname</td>
-					<td class="artistname">Artist</td>
-					<td class="artdesc">description</td>
-					<td class="artprice">Price</td>
-					<td class="carttable"><input class="addtocart" type="submit" onclick="window.location.href = 'itemview.html'" value="View Item"></input><br><input class="addtocart" type="submit" value="Add to Cart"></input></td>
-				</tr>
-				<tr>
-					<td class="image"><img src="images/royaltyfreeart.jpg" alt="Picture of Art" width="100%"></td>
-					<td class="artname">Artname</td>
-					<td class="artistname">Artist</td>
-					<td class="artdesc">description</td>
-					<td class="artprice">Price</td>
-					<td class="carttable"><input class="addtocart" type="submit" onclick="window.location.href = 'itemview.html'" value="View Item"></input><br><input class="addtocart" type="submit" value="Add to Cart"></input></td>
-				</tr>
-				
-				
+					<td class="orderid">Order ID</td>
+					<td class="orderdate">Order Date</td>
+					<!--IFF ADMIN-->
+					<td class="username">Username<br>/*ONLY IF ADMIN*/</td>
+					<!--end admin-->
+					<td class="itemcount">Number of Items</td>
+					<td class="orderdetails">Order Details</td>
+					<td class="ordertotal">Order Total Price</td>
+					<td class="carttable"><input class="addtocart" type="submit" onclick="window.location.href = 'vieworderid.html'" value="View Order"></input></td>
+				</tr>				
 				
 			</table>
 		</div>
