@@ -33,11 +33,8 @@ class Account {
         
         $token = $this->password;
 
-        $query = "INSERT INTO users (username, email, password, firstName, LastName, address, city, state, zip, admin) VALUES ($accountID, $username, $email, $token, $firstName, $lastName, $address, $city, $state, $zipCode, $admin)";
+        $query = "INSERT INTO users (username, email, password, firstName, LastName, address, city, state, zip, admin) VALUES ($username, $email, $token, $firstName, $lastName, $address, $city, $state, $zipCode, $admin)";
         $result = $connection->query($query);
-
-        $query = "SELECT userID FROM users WHERE username= '$username'";
-        $this->accountID = $connection->query($query);
     }
 
     function isAdmin() {
