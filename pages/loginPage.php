@@ -3,11 +3,11 @@
      require_once 'login.php';
      $connection = new mysqli($hn, $un, $pw, $db);
  
-     if (isset($_SESSION['user']) && $_SESSION['user']['admin'] == TRUE ) {
-       header('location: admin_page.php'); // replace with admin homepage
+     if (isset($_SESSION['user']) && $_SESSION['user']['admin'] === TRUE ) {
+       header('location: index.php'); // replace with admin homepage
      }
  
-     if (isset($_SESSION['user']) && $_SESSION['user']['admin'] == FALSE ) {
+     if (isset($_SESSION['user']) && $_SESSION['user']['admin'] === FALSE ) {
        header('location: index.php');
      }
 ?>
@@ -81,10 +81,10 @@
      
       		if (mysqli_num_rows($result) == 1) {
        		$logged_in_user = mysqli_fetch_assoc($result);
-        		if ($logged_in_user['admin'] == TRUE) {
+        		if ($logged_in_user['admin'] === TRUE) {
           			$_SESSION['user'] = $logged_in_user;
           			$_SESSION['success'] = "You are now logged in";
-          			header('location: admin_page.php'); // replace with the admin homepage
+          			header('location: index.php'); // replace with the admin homepage
         		} else {
           			$_SESSION['user'] = $logged_in_user;
           			$_SESSION['success'] = "You are now logged in";
@@ -136,7 +136,7 @@
 		<input type="text" name = "password" style="width:200px;"></input>
 		<br>
 		<br>
-		<input class="submit" type="submit" name = "loginButton" style="width:200px;" onclick="window.location.href='account.php'" value="Login"></input>
+		<input class="submit" type="submit" name = "loginButton" style="width:200px;" value="Login"></input>
 	</div>
 </body>
 

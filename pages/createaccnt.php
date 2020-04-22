@@ -65,6 +65,12 @@
 	  $confirmEmail = sanitizeString($_POST['confirmEmail']);
       $password = sanitizeString($_POST['password']);
 	  $confirmPassword = sanitizeString($_POST['confirmPass']);
+	  $address = sanitizeString($_POST['address']);
+	  $city = sanitizeString($_POST['city']);
+	  $state = sanitizeString($_POST['state']);
+	  $zipCode = sanitizeString($_POST['zip']);
+	  $admin = FALSE;
+
 	 
 	  $correct = TRUE;
 	  if ($email != $confirmEmail) {
@@ -75,10 +81,24 @@
 			$passError = "Your passwords do not match!";
 			$correct = FALSE;
 	  }
-	  if ($correct ==+ TRUE) {
+	  if ($correct === TRUE) {
 		  	$token = encrypt($confirmPassword);
 			require_once 'classes/account.php';
-			$account = new Account($firstName, $lastName, $username, $token, $confirmEmail, $address, $city, $state, $zipCode, $admin)
+			$account = new Account($firstName, $lastName, $username, $token, $confirmEmail, $address, $city, $state, $zipCode, $admin);
+
+			require_once 'login.php';
+			$query = "SELECT * FROM users WHERE username= '$username' AND password= '$token' LIMIT 1";
+			$result = $connection->query($query);
+			$logged_in_user = mysqli_fetch_assoc($result);
+        	if ($logged_in_user['admin'] === TRUE) {
+          		$_SESSION['user'] = $logged_in_user;
+          		$_SESSION['success'] = "You are now logged in";
+          		header('location: index.php');
+        	} else {
+          		$_SESSION['user'] = $logged_in_user;
+          		$_SESSION['success'] = "You are now logged in";
+         		header('location: index.php');
+        	}  
 	  }
 
 	}
@@ -143,7 +163,7 @@
 		<span class="error"><?php echo $passError; ?></span>
 		<br>
 		<br>
-		<input class="submit" name="Continue" type="submit" style="width:200px;" onclick="window.location.href='index.php'" value="Continue"></input>
+		<input class="submit" name="Continue" type="submit" style="width:200px;" value="Continue"></input>
 		
 	</div>
 </body>
