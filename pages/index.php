@@ -83,6 +83,14 @@
 </head>
 
 <body>
+	<?php 
+		if(!isset($_SESSION['user'])) {
+			echo "<span class='error'>Please Login to access this page.</span>";
+			echo "<br><br><a href='login_page.php'>Login</a>";
+		  }		  
+		else {
+			$user = $_SESSION['user']['username'];
+		?>
 	<div class="header">
 		<div class="title">
 		<a href="index.php" ><h1>WeSellArt.com</h1></a>
@@ -91,10 +99,8 @@
 		</div>
 		<div class="useroptions">
 		
-		<!--IF NOT LOGGED IN:
-		<input class="submit" type="submit" value="Login"></input>-->
-		<!--IF LOGGED IN:-->
-		<h3>Hello, $username</h3>
+		
+		<h3>Hello, <?php echo $user ?></h3>
 
 		<input class="submit" type="submit" onclick="window.location.href = 'cartview.php'" value="Cart"></input>
 		
