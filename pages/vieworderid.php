@@ -85,7 +85,7 @@
 <body>
 	<div class="header">
 		<div class="title">
-		<a href="index.html" ><h1>WeSellArt.com</h1></a>
+		<a href="index.php" ><h1>WeSellArt.com</h1></a>
 		<h3>We here at WeSellArt.com are dedicated to selling you quality* art at unreasonable prices.</h3>
 		<h6>*We do not ensure the quality of any artwork.</h6>
 		</div>
@@ -94,13 +94,13 @@
 		
 		<h3>Hello, $username</h3>
 
-		<input class="submit" type="submit" onclick="window.location.href = 'cartview.html'" value="Cart"></input>
+		<input class="submit" type="submit" onclick="window.location.href = 'cartview.php'" value="Cart"></input>
 		
-		<input class="submit" type="submit" onclick="window.location.href='logout.html'" value="Logout"></input>
+		<input class="submit" type="submit" onclick="window.location.href='logout.php'" value="Logout"></input>
 		<br><br>
-		<input class="submit" type="submit" onclick="window.location.href='account.html'" value="View Account"></input>
+		<input class="submit" type="submit" onclick="window.location.href='account.php'" value="View Account"></input>
 		
-		<input class="submit" type="submit" onclick="window.location.href='vieworders.html'" value="View Orders"></input>
+		<input class="submit" type="submit" onclick="window.location.href='vieworders.php'" value="View Orders"></input>
 		
 		</div>
 	
@@ -125,7 +125,7 @@
 					<td class="artistname">Artist</td>
 					<td class="artdesc">description</td>
 					<td class="artprice">Price</td>
-					<td class="carttable"><input class="addtocart" type="submit" onclick="window.location.href = 'itemview.html'" value="View Item"></input></td>
+					<td class="carttable"><input class="addtocart" type="submit" onclick="window.location.href = 'itemview.php'" value="View Item"></input></td>
 				</tr>
 				<tr>
 					<td class="image"><img src="images/royaltyfreeart.jpg" alt="Picture of Art" width="100%"></td>
@@ -133,7 +133,7 @@
 					<td class="artistname">Artist</td>
 					<td class="artdesc">description</td>
 					<td class="artprice">Price</td>
-					<td class="carttable"><input class="addtocart" type="submit" onclick="window.location.href = 'itemview.html'" value="View Item"></input></td>
+					<td class="carttable"><input class="addtocart" type="submit" onclick="window.location.href = 'itemview.php'" value="View Item"></input></td>
 				</tr>
 				
 				

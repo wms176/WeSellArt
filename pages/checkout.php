@@ -36,7 +36,7 @@
 			}
 			.submit{
 				height: 50px;
-				width: 150px;
+				width: 100px;
 			}
 			.main{
 				position: relative;
@@ -46,8 +46,6 @@
 				right:5px;
 				width: 100%;
 				height: 1000px;
-				top:201px;
-				text-align:center;
 			}
 			
 			
@@ -58,44 +56,28 @@
 <body>
 	<div class="header">
 		<div class="title">
-		<a href="index.html" ><h1>WeSellArt.com</h1></a>
+		<a href="index.php" ><h1>WeSellArt.com</h1></a>
 		<h3>We here at WeSellArt.com are dedicated to selling you quality* art at unreasonable prices.</h3>
 		<h6>*We do not ensure the quality of any artwork.</h6>
 		</div>
 		<div class="useroptions">
 		
+		
+		<h3>Hello, $username</h3>
 
-		<input class="submit" type="submit" onclick="window.location.href='login.html'" value="Login"></input>
-
-	
+		<input class="submit" type="submit" onclick="window.location.href = 'cartview.php'" value="Cart"></input>
+		
+		<input class="submit" type="submit" onclick="window.location.href='logout.php'" value="Logout"></input>
+		<br><br>
+		<input class="submit" type="submit" onclick="window.location.href='account.php'" value="View Account"></input>
+		
+		<input class="submit" type="submit" onclick="window.location.href='vieworders.php'" value="View Orders"></input>
+		
+		</div>
 	
 	</div>
 	<div class="main">
-		<h3>Please Enter Billing Information:</h3>
-		
-		<br>
-		<h4>Card Holder's Name</h4>
-		<br>
-		<input type="text" style="width:200px;"></input>
-		<br>
-		<h4>Card Number</h4>
-		<br>
-		<input type="text" style="width:200px;"></input>
-		<br>
-		<h4>Expiration</h4>
-		
-		<h5>Month / Year</h5>
-		<br>
-		<input type="text" style="width:100px;"></input>
-		<input type="text" style="width:100px;"></input>
-		<br>
-		<h4>Security Code</h4>
-		<br>
-		<input type="text" style="width:50px;"></input>
-		<br>
-
-		<br>
-		<input class="submit" type="submit" style="width:200px;" onclick="window.location.href='account.html'" value="Continue"></input>
+		<!-- IF NOT LOGGED IN REDIRECT TO LOGIN-->
 		
 	</div>
 </body>

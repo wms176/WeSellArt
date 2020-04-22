@@ -58,19 +58,32 @@
 <body>
 	<div class="header">
 		<div class="title">
-		<a href="index.html" ><h1>WeSellArt.com</h1></a>
+		<a href="index.php" ><h1>WeSellArt.com</h1></a>
 		<h3>We here at WeSellArt.com are dedicated to selling you quality* art at unreasonable prices.</h3>
 		<h6>*We do not ensure the quality of any artwork.</h6>
 		</div>
 		<div class="useroptions">
 		
 
-		<input class="submit" type="submit" onclick="window.location.href='login.html'" value="Login"></input>
+		<input class="submit" type="submit" onclick="window.location.href='login.php'" value="Login"></input>
 
 	
 	
 	</div>
 	<div class="main">
+		<h3>Please Confirm Current Password:</h3>
+		<br>
+		<input type="text" style="width:200px;"></input>
+		<br>
+		<h3>Please Enter New Password:</h3>
+		<br>
+		<input type="text" style="width:200px;"></input>
+		<br>
+		<h3>Please Confirm New Password:</h3>
+		<br>
+		<input type="text" style="width:200px;"></input>
+		<br>
+		<br>
 		<h3>Please Enter Shipping Address:</h3>
 		<br>
 		<h4>Street</h4>
@@ -94,8 +107,8 @@
 		<input type="text" style="width:200px;"></input>
 		<br>
 		<br>
-		<input class="submit" type="submit" style="width:200px;" onclick="window.location.href='editbillingdetails.html'" value="Continue"></input>
-		
+		<input class="submit" type="submit" style="width:200px;" onclick="window.location.href='account.php'" value="Continue"></input>
+
 	</div>
 </body>
 

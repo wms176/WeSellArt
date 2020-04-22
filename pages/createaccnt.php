@@ -65,14 +65,14 @@
 	?>
 	<div class="header">
 		<div class="title">
-		<a href="index.html" ><h1>WeSellArt.com</h1></a>
+		<a href="index.php" ><h1>WeSellArt.com</h1></a>
 		<h3>We here at WeSellArt.com are dedicated to selling you quality* art at unreasonable prices.</h3>
 		<h6>*We do not ensure the quality of any artwork.</h6>
 		</div>
 		<div class="useroptions">
 		
 
-		<input class="submit" type="submit" onclick="window.location.href='login.html'" value="Login"></input>
+		<input class="submit" type="submit" onclick="window.location.href='login.php'" value="Login"></input>
 
 	
 	
@@ -107,7 +107,7 @@
 		<input type="text" name="confirmPass" style="width:200px;"></input>
 		<br>
 		<br>
-		<input class="submit" name="Continue" type="submit" style="width:200px;" onclick="window.location.href='editshippingdetails.html'" value="Continue"></input>
+		<input class="submit" name="Continue" type="submit" style="width:200px;" onclick="window.location.href='editaccntdetails.php'" value="Continue"></input>
 		
 	</div>
 </body>

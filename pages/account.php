@@ -38,6 +38,10 @@
 				height: 50px;
 				width: 100px;
 			}
+			.editsubmit{
+				height: 50px;
+				width: 300px;
+			}
 			.main{
 				position: relative;
 				border-style: solid;
@@ -47,7 +51,11 @@
 				width: 100%;
 				height: 1000px;
 			}
-			
+			.info{
+				left:20px;
+				position:absolute;
+				margine:auto;
+			}
 			
 		</style>
   
@@ -56,29 +64,47 @@
 <body>
 	<div class="header">
 		<div class="title">
-		<a href="index.html" ><h1>WeSellArt.com</h1></a>
+		<a href="index.php" ><h1>WeSellArt.com</h1></a>
 		<h3>We here at WeSellArt.com are dedicated to selling you quality* art at unreasonable prices.</h3>
 		<h6>*We do not ensure the quality of any artwork.</h6>
 		</div>
 		<div class="useroptions">
 		
-		
+		<!--IF NOT LOGGED IN:
+		<input class="submit" type="submit" value="Login"></input>-->
+		<!--IF LOGGED IN:-->
 		<h3>Hello, $username</h3>
 
-		<input class="submit" type="submit" onclick="window.location.href = 'cartview.html'" value="Cart"></input>
+		<input class="submit" type="submit" onclick="window.location.href = 'cartview.php'" value="Cart"></input>
 		
-		<input class="submit" type="submit" onclick="window.location.href='logout.html'" value="Logout"></input>
+		<input class="submit" type="submit" onclick="window.location.href='logout.php'" value="Logout"></input>
 		<br><br>
-		<input class="submit" type="submit" onclick="window.location.href='account.html'" value="View Account"></input>
 		
-		<input class="submit" type="submit" onclick="window.location.href='vieworders.html'" value="View Orders"></input>
+		<input class="submit" type="submit" onclick="window.location.href='vieworders.php'" value="View Orders"></input>
 		
 		</div>
 	
 	</div>
 	<div class="main">
+	<div class="info">
 		<!-- IF NOT LOGGED IN REDIRECT TO LOGIN-->
-		
+		<h2>$username's Account:</h2>
+		<br>
+		<h3>Name:</h3>
+		<p>$name</p>
+		<br>
+		<h3>Email:</h3>
+		<p>$email</p>
+		<br>
+		<h3>Shipping Address:</h3>
+		<p>$email, $city, $state, $zipcode</p>
+		<br>
+		<input class="editsubmit" type="submit" onclick="window.location.href='editpassword.php'" value="Change Password"></input>
+		<br>
+		<br>
+		<input class="editsubmit" type="submit" onclick="window.location.href='editshippingdetails.php'" value="Change Shipping and Billing Information"></input>
+
+	</div>
 	</div>
 </body>
 
