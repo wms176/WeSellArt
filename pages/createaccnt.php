@@ -56,13 +56,47 @@
 </head>
 
 <body>
-	<?php
-    	if(isset($_POST['submit'])){
-			
+<?php
+    if(isset($_POST['continue'])){
+      $username = sanitizeString($_POST['username']);
+	  $firstName = sanitizeString($_POST['firstName']);
+	  $lastName = sanitizeString($_POST['lastName']);
+	  $email = sanitizeString($_POST['email']);
+	  $confirmEmail = sanitizeString($_POST['confirmEmail']);
+      $password = sanitizeString($_POST['password']);
+	  $confirmPassword = sanitizeString($_POST['confirmPass']);
+	 
+	  $correct = TRUE;
+	  if ($email != $confirmEmail) {
+			$emailError = "Your email addresses do not match!";
+			$correct = FALSE;
+	  }
+	  if ($password != $confirmPassword) {
+			$passError = "Your passwords do not match!";
+			$correct = FALSE;
+	  }
+	  if ($correct ==+ TRUE) {
+		  	$token = encrypt($confirmPassword);
+			require_once 'classes/account.php';
+			$account = new Account($firstName, $lastName, $username, $token, $confirmEmail, $address, $city, $state, $zipCode, $admin)
+	  }
 
+	}
 
+    function encrypt($pass) {
+      $salt1 = "qm&h*";
+      $salt2 = "pg!@";
+      $token = hash('ripemd128', "$salt1$pass$salt2");
+      return $token;
+    }
 
-	?>
+    function sanitizeString($data) {
+    $data = strip_tags($data);
+    $data = stripslashes($data);
+    $data = htmlentities($data);
+    return $data;
+    }
+  ?>
 	<div class="header">
 		<div class="title">
 		<a href="index.php" ><h1>WeSellArt.com</h1></a>
@@ -97,6 +131,7 @@
 		<h3>Please Confirm Email:</h3>
 		<br>
 		<input type="text" name= "confirmEmail" style="width:200px;"></input>
+		<span class="error"><?php echo $emailError; ?></span>
 		<br>
 		<h3>Please Enter Password:</h3>
 		<br>
@@ -105,6 +140,7 @@
 		<h3>Please Confirm Password:</h3>
 		<br>
 		<input type="text" name="confirmPass" style="width:200px;"></input>
+		<span class="error"><?php echo $passError; ?></span>
 		<br>
 		<br>
 		<input class="submit" name="Continue" type="submit" style="width:200px;" onclick="window.location.href='editaccntdetails.php'" value="Continue"></input>
