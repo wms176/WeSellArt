@@ -162,6 +162,28 @@
 		<input type="text" name="confirmPass" style="width:200px;"></input>
 		<span class="error"><?php echo $passError; ?></span>
 		<br>
+		<h3>Please Enter Shipping Address:</h3>
+		<br>
+		<h4>Street</h4>
+		<br>
+		<input type="text" style="width:200px;"></input>
+		<br>
+		<h4>City</h4>
+		<br>
+		<input type="text" style="width:200px;"></input>
+		<br>
+		<h4>State</h4>
+		<br>
+		<input type="text" style="width:200px;"></input>
+		<br>
+		<h4>Country</h4>
+		<br>
+		<input type="text" style="width:200px;"></input>
+		<br>
+		<h4>Zip Code</h4>
+		<br>
+		<input type="text" style="width:200px;"></input>
+		<br>
 		<br>
 		<input class="submit" name="Continue" type="submit" style="width:200px;" value="Continue"></input>
 		
