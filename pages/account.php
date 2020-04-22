@@ -99,11 +99,9 @@
 		<h3>Shipping Address:</h3>
 		<p>$email, $city, $state, $zipcode</p>
 		<br>
-		<input class="editsubmit" type="submit" onclick="window.location.href='editpassword.php'" value="Change Password"></input>
+		<input class="editsubmit" type="submit" onclick="window.location.href='editaccntdetails.php'" value="Edit Account"></input>
 		<br>
-		<br>
-		<input class="editsubmit" type="submit" onclick="window.location.href='editshippingdetails.php'" value="Change Shipping and Billing Information"></input>
-
+		
 	</div>
 	</div>
 </body>
