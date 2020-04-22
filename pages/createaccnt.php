@@ -143,7 +143,7 @@
 		<span class="error"><?php echo $passError; ?></span>
 		<br>
 		<br>
-		<input class="submit" name="Continue" type="submit" style="width:200px;" onclick="window.location.href='editaccntdetails.php'" value="Continue"></input>
+		<input class="submit" name="Continue" type="submit" style="width:200px;" onclick="window.location.href='index.php'" value="Continue"></input>
 		
 	</div>
 </body>
