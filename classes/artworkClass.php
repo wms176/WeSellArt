@@ -49,7 +49,9 @@ class Artwork{
 	
 	//updates quantity based on the local value of price and artid, and pushes it to the DB.
 	public function updateQuantity(){
-		$query = "UPDATE art SET price=25 WHERE artID = 1";
+		$price = $this->artPrice;
+		$artID = $this->artID;
+		$query = "UPDATE art SET price=$price WHERE artID = $artID";
 		return $this->conn->query($query);
 		
 	}
