@@ -40,7 +40,6 @@ class Order{
 		$userID = $this->userID;
 		$itemsBought = $this->itemsBought;
 		$query = "INSERT INTO orders (timeoforder,userID, itemsBought) VALUES (now() , $this->userID ,'$itemsBought')";
-		echo "<h1>got here yeeter</h1>";
 		$return = $this->conn->query($query);
 		if(!$return){
 			echo("Error description: " . $this->conn->error);
