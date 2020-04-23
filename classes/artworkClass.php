@@ -13,15 +13,12 @@ class Artwork{
 	//and populates the other methods using it.
 	//initialize with -1 to not do this.
 	public function __construct($artID){
-		if($artID != -1){
-			//connect to database
+		require_once('login.php');
+		this->conn = new mysqli($hn, $un, $pw, $db);
 			
-			require_once('login.php');
-			$this->conn = new mysqli($hn, $un, $pw, $db);
-			
-			if($this->conn->connect_error)
+		if($this->conn->connect_error)
 				die($this->conn->connect_error);
-			
+		if($artID != -1){
 			$query = "SELECT * FROM art WHERE artID = '$artID'";
 			$result = $this->conn->query($query);
 			while($row = $result->fetch_array()){
