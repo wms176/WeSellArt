@@ -62,6 +62,7 @@ I'm uncertain how we intended this to work when we wrote it. I assume we'll have
 CREATE TABLE cart(
   cartID int(10),
   items VARCHAR(200),
+  total DECIMAL(10,2),
   userID int(10),
   PRIMARY KEY (cartID),
   FOREIGN KEY (userID) REFERENCES users(userID)
