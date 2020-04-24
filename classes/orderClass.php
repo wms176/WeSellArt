@@ -66,7 +66,7 @@ class Order{
 		$query = "SELECT orderID FROM orders WHERE userID = '$userID'";
 		$response = $this->conn->query($query);
 		$iterator = 0;
-		$orderlist = list();
+		$orderlist = array();
 		while($row = $response->fetch_array()){
 			//$orderlist[$iterator] = $row['orderID'];
 			array_push($orderlist, $row['orderID']);
