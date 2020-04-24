@@ -1,3 +1,12 @@
+<?php 
+		if(!isset($_SESSION['user'])) {
+			echo "<span class='error'>Please Login to access this page.</span>";
+			echo "<br><br><a href='login_page.php'>Login</a>";
+		  }		  
+		else {
+			$user = $_SESSION['user']['username'];
+		}
+		?>
 <!DOCTYPE html>
 <html lang="en">
 
