@@ -74,7 +74,10 @@
 			$myUsername = sanitizeString($_POST['username']);
     		$myPassword = sanitizeString($_POST['password']);
 
-      		$token = encrypt($myPassword);
+			$token = encrypt($myPassword);
+			  
+			 require_once 'login.php';
+    		$connection = new mysqli($hn, $un, $pw, $db);
       
       		$query = "SELECT * FROM users WHERE username= '$myUsername' AND password= '$token' LIMIT 1";
       		$result = $connection->query($query);
