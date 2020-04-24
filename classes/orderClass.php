@@ -54,7 +54,8 @@ class Order{
 		$iterator = 0;
 		$orderlist = array();
 		while($row = $response->fetch_array()){
-			$orderlist[$iterator] = $row['orderID'];
+			//$orderlist[$iterator] = $row['orderID'];
+			array_push($orderlist, $row['orderID']);
 			$iterator++;
 		}
 		return $orderlist;
@@ -65,9 +66,10 @@ class Order{
 		$query = "SELECT orderID FROM orders WHERE userID = '$userID'";
 		$response = $this->conn->query($query);
 		$iterator = 0;
-		$orderlist = array();
+		$orderlist = list();
 		while($row = $response->fetch_array()){
-			$orderlist[$iterator] = $row['orderID'];
+			//$orderlist[$iterator] = $row['orderID'];
+			array_push($orderlist, $row['orderID']);
 			$iterator++;
 		}
 		return $orderlist;
@@ -81,7 +83,8 @@ class Order{
 		$iterator = 0;
 		$orderlist = array();
 		while($row = $response->fetch_array()){
-			$orderlist[$iterator] = $row['orderID'];
+			//$orderlist[$iterator] = $row['orderID'];
+			array_push($orderlist, $row['orderID']);
 			$iterator++;
 		}
 		return $orderlist;

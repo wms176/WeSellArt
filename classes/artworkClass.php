@@ -18,6 +18,7 @@ class Artwork{
 			
 		if($this->conn->connect_error)
 				die($this->conn->connect_error);
+			
 		if($artID != -1){
 			$query = "SELECT * FROM art WHERE artID = '$artID'";
 			$result = $this->conn->query($query);
@@ -50,7 +51,6 @@ class Artwork{
 		$artID = $this->artID;
 		$query = "UPDATE art SET price=$price WHERE artID = $artID";
 		return $this->conn->query($query);
-		
 	}
 	
 	//All of the getters and setters. Don't @ me.
