@@ -83,7 +83,7 @@
 	  }
 	  if ($correct === TRUE) {
 		  	$token = encrypt($confirmPassword);
-			require_once 'classes/account.php';
+			require_once 'accountClass.php';
 			$account = new Account($firstName, $lastName, $username, $token, $confirmEmail, $address, $city, $state, $zipCode, $admin);
 
 			require_once 'login.php';
@@ -166,23 +166,19 @@
 		<br>
 		<h4>Street</h4>
 		<br>
-		<input type="text" style="width:200px;"></input>
+		<input type="text" name="address" style="width:200px;"></input>
 		<br>
 		<h4>City</h4>
 		<br>
-		<input type="text" style="width:200px;"></input>
+		<input type="text" name="city" style="width:200px;"></input>
 		<br>
 		<h4>State</h4>
 		<br>
-		<input type="text" style="width:200px;"></input>
-		<br>
-		<h4>Country</h4>
-		<br>
-		<input type="text" style="width:200px;"></input>
+		<input type="text" name="state" style="width:200px;"></input>
 		<br>
 		<h4>Zip Code</h4>
 		<br>
-		<input type="text" style="width:200px;"></input>
+		<input type="text" name="zip" style="width:200px;"></input>
 		<br>
 		<br>
 		<input class="submit" name="Continue" type="submit" style="width:200px;" value="Continue"></input>

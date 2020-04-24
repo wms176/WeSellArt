@@ -1,3 +1,11 @@
+<?php 
+		if(!isset($_SESSION['user'])) {
+			echo "<span class='error'>Please Login to access this page.</span>";
+			echo "<br><br><a href='login_page.php'>Login</a>";
+		  }		  
+		else {
+			$user = $_SESSION['user']['username'];
+		?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -83,14 +91,6 @@
 </head>
 
 <body>
-	<?php 
-		if(!isset($_SESSION['user'])) {
-			echo "<span class='error'>Please Login to access this page.</span>";
-			echo "<br><br><a href='login_page.php'>Login</a>";
-		  }		  
-		else {
-			$user = $_SESSION['user']['username'];
-		?>
 	<div class="header">
 		<div class="title">
 		<a href="index.php" ><h1>WeSellArt.com</h1></a>
@@ -137,7 +137,7 @@
 			<table class="actualtable">
 				
 				<tr>
-					<td class="image"><img src="sources/royaltyfreeart.jpg" alt="Picture of Art" width="100%"></td>
+					<td class="image"><img src="royaltyfreeart.jpg" alt="Picture of Art" width="100%"></td>
 					<td class="artname">Artname</td>
 					<td class="artistname">Artist</td>
 					<td class="artdesc">description</td>
@@ -145,7 +145,7 @@
 					<td class="carttable"><input class="addtocart" type="submit" onclick="window.location.href = 'itemview.php'" value="View Item"></input><br><input class="addtocart" type="submit" value="Add to Cart"></input></td>
 				</tr>
 				<tr>
-					<td class="image"><img src="sources/royaltyfreeart.jpg" alt="Picture of Art" width="100%"></td>
+					<td class="image"><img src="royaltyfreeart.jpg" alt="Picture of Art" width="100%"></td>
 					<td class="artname">Artname</td>
 					<td class="artistname">Artist</td>
 					<td class="artdesc">description</td>
@@ -153,7 +153,7 @@
 					<td class="carttable"><input class="addtocart" type="submit" onclick="window.location.href = 'itemview.php'" value="View Item"></input><br><input class="addtocart" type="submit" value="Add to Cart"></input></td>
 				</tr>
 				<tr>
-					<td class="image"><img src="sources/royaltyfreeart.jpg" alt="Picture of Art" width="100%"></td>
+					<td class="image"><img src="royaltyfreeart.jpg" alt="Picture of Art" width="100%"></td>
 					<td class="artname">Artname</td>
 					<td class="artistname">Artist</td>
 					<td class="artdesc">description</td>
@@ -161,7 +161,7 @@
 					<td class="carttable"><input class="addtocart" type="submit" onclick="window.location.href = 'itemview.php'" value="View Item"></input><br><input class="addtocart" type="submit" value="Add to Cart"></input></td>
 				</tr>
 				<tr>
-					<td class="image"><img src="sources/royaltyfreeart.jpg" alt="Picture of Art" width="100%"></td>
+					<td class="image"><img src="royaltyfreeart.jpg" alt="Picture of Art" width="100%"></td>
 					<td class="artname">Artname</td>
 					<td class="artistname">Artist</td>
 					<td class="artdesc">description</td>
