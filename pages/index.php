@@ -5,6 +5,7 @@
 		  }		  
 		else {
 			$user = $_SESSION['user']['username'];
+		}
 		?>
 <!DOCTYPE html>
 <html lang="en">
