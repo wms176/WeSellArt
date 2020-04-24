@@ -140,14 +140,14 @@
 			<table class="actualtable">
 				
 				<tr>
-					<td class="image"><img src="images/royaltyfreeart.jpg" alt="Picture of Art" width="100%"></td>
+					<td class="image"><img src="source/royaltyfreeart.jpg" alt="Picture of Art" width="100%"></td>
 					<td class="artname">Artname</td>
 					<td class="artistname">Artist</td>
 					<td class="artprice">Price</td>
 					<td class="carttable"><input class="addtocart" type="submit" onclick="window.location.href = 'itemview.php'" value="View Item"></input><br><input class="removefromcart" type="submit" value="Remove from Cart"></input></td>
 				</tr>
 				<tr>
-					<td class="image"><img src="images/royaltyfreeart.jpg" alt="Picture of Art" width="100%"></td>
+					<td class="image"><img src="source/royaltyfreeart.jpg" alt="Picture of Art" width="100%"></td>
 					<td class="artname">Artname</td>
 					<td class="artistname">Artist</td>
 					<td class="artprice">Price</td>
