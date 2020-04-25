@@ -1,6 +1,6 @@
 <?php 
 		if(!isset($_SESSION['user'] || $_SESSION['user']['admin'] === FALSE)) {
-			echo "<span class='error'>Please Login to access this page.</span>";
+			echo "<span class='error'>Please Login as an admin to access this page.</span>";
 			echo "<br><br><a href='loginPage.php'>Login</a>";
 		  }		  
 		else {
