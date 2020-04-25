@@ -11,7 +11,7 @@ password is a placeholder, which will vary based on what hashing method we use. 
 
 */
 CREATE TABLE users (
-  userID INT(10) auto_increment,
+  userID INT(10) NOT NULL auto_increment,
   username VARCHAR(10),
   email VARCHAR(254),
   password VARCHAR(32),

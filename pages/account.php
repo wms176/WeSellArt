@@ -1,7 +1,7 @@
 <?php 
+		session_start();
 		if(!isset($_SESSION['user'])) {
-			echo "<span class='error'>Please Login to access this page.</span>";
-			echo "<br><br><a href='login_page.php'>Login</a>";
+			header("location: loginPage.php");
 		  }		  
 		else {
 			$user = $_SESSION['user']['username'];
@@ -82,11 +82,11 @@
 		<!--IF NOT LOGGED IN:
 		<input class="submit" type="submit" value="Login"></input>-->
 		<!--IF LOGGED IN:-->
-		<h3>Hello, $username</h3>
+		<h3>Hello, <?php echo $_SESSION['user']['username']?></h3>
 
 		<input class="submit" type="submit" onclick="window.location.href = 'cartview.php'" value="Cart"></input>
 		
-		<input class="submit" type="submit" onclick="window.location.href='logout.php'" value="Logout"></input>
+		<input class="submit" type="submit" onclick="window.location.href='logoutPage.php'" value="Logout"></input>
 		<br><br>
 		
 		<input class="submit" type="submit" onclick="window.location.href='vieworders.php'" value="View Orders"></input>
@@ -97,16 +97,16 @@
 	<div class="main">
 	<div class="info">
 		<!-- IF NOT LOGGED IN REDIRECT TO LOGIN-->
-		<h2>$username's Account:</h2>
+		<h2><?php echo $_SESSION['user']['username']?>'s Account:</h2>
 		<br>
 		<h3>Name:</h3>
-		<p>$name</p>
+		<p><?php echo $_SESSION['user']['firstName']?> <?php echo $_SESSION['user']['lastName']?></p>
 		<br>
 		<h3>Email:</h3>
-		<p>$email</p>
+		<p><?php echo $_SESSION['user']['email']?></p>
 		<br>
 		<h3>Shipping Address:</h3>
-		<p>$email, $city, $state, $zipcode</p>
+		<p><?php echo $_SESSION['user']['address']?><br><?php echo $_SESSION['user']['city']?>, <?php echo $_SESSION['user']['state']?><br><?php echo $_SESSION['user']['zipCode']?> </p>
 		<br>
 		<input class="editsubmit" type="submit" onclick="window.location.href='editaccntdetails.php'" value="Edit Account"></input>
 		<br>

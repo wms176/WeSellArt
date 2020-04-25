@@ -1,10 +1,14 @@
 <?php 
-		if(!isset($_SESSION['user'] || $_SESSION['user']['admin'] === FALSE)) {
-			echo "<span class='error'>Please Login as an admin to access this page.</span>";
-			echo "<br><br><a href='loginPage.php'>Login</a>";
-		  }		  
+		session_start();
+		if (!isset($_SESSION['user'])) {
+			header("location: loginPage.php");
+		}
+		else if ($_SESSION['user']['admin'] == 0) {
+			header("location: index.php");
+		}		  
 		else {
 			$user = $_SESSION['user']['username'];
+		}
 		?>
 <!DOCTYPE html>
 <html lang="en">
@@ -100,10 +104,10 @@
 		<div class="useroptions">
 		
 		
-		<h3>Hello, $username</h3>
+		<h3>Hello, <?php echo $_SESSION['user']['username']?></h3>
 
 		
-		<input class="submit" type="submit" onclick="window.location.href='logout.php'" value="Logout"></input>
+		<input class="submit" type="submit" onclick="window.location.href='logoutPage.php'" value="Logout"></input>
 		
 		<input class="submit" type="submit" onclick="window.location.href='account.php'" value="View Account"></input>
 		<br><br>

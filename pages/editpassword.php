@@ -1,7 +1,6 @@
 <?php 
 		if(!isset($_SESSION['user'])) {
-			echo "<span class='error'>Please Login to access this page.</span>";
-			echo "<br><br><a href='login_page.php'>Login</a>";
+			header("location: loginPage.php");
 		  }		  
 		else {
 			$user = $_SESSION['user']['username'];
@@ -74,7 +73,7 @@
 		<div class="useroptions">
 		
 
-		<input class="submit" type="submit" onclick="window.location.href='login.html'" value="Login"></input>
+		<input class="submit" type="submit" onclick="window.location.href='loginPage.html'" value="Login"></input>
 
 	
 	

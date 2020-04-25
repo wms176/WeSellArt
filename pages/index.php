@@ -1,12 +1,12 @@
 <?php 
+		session_start();
 		if(!isset($_SESSION['user'])) {
-			echo "<span class='error'>Please Login to access this page.</span>";
-			echo "<br><br><a href='loginPage.php'>Login</a>";
-		  }		  
+			header('location: loginPage.php');
+		}	  
 		else {
 			$user = $_SESSION['user']['username'];
 		}
-		?>
+		?>	
 <!DOCTYPE html>
 <html lang="en">
 
@@ -101,11 +101,16 @@
 		<div class="useroptions">
 		
 		
-		<h3>Hello, <?php echo $_SESSION['user']['username'] ?></h3>
+		<h3>Hello, <?php echo $_SESSION['user']['username']; ?></h3>
 
-		<input class="submit" type="submit" onclick="window.location.href = 'cartview.php'" value="Cart"></input>
-		
-		<input class="submit" type="submit" onclick="window.location.href='logout.php'" value="Logout"></input>
+		<?php 
+		if($_SESSION['user']['admin'] == 1){
+			echo "<input class='submit' type='submit' onclick=\"window.location.href='adminPage.php'\" value='Admin Page'></input>";
+		} else {
+			echo "<input class='submit' type='submit' onclick=\"window.location.href = 'cartview.php'\" value='Cart'></input>";	
+		}
+		?>		
+		<input class="submit" type="submit" onclick="window.location.href='logoutPage.php'" value="Logout"></input>
 		<br><br>
 		<input class="submit" type="submit" onclick="window.location.href='account.php'" value="View Account"></input>
 		
@@ -135,44 +140,36 @@
 			</form>
 		</div>
 		<div class="listingtable">
-			<table class="actualtable">
+		<?php
+			require_once('login.php');
 				
-				<tr>
-					<td class="image"><img src="sources/royaltyfreeart.jpg" alt="Picture of Art" width="100%"></td>
-					<td class="artname">Artname</td>
-					<td class="artistname">Artist</td>
-					<td class="artdesc">description</td>
-					<td class="artprice">Price</td>
-					<td class="carttable"><input class="addtocart" type="submit" onclick="window.location.href = 'itemview.php'" value="View Item"></input><br><input class="addtocart" type="submit" value="Add to Cart"></input></td>
-				</tr>
-				<tr>
-					<td class="image"><img src="sources/royaltyfreeart.jpg" alt="Picture of Art" width="100%"></td>
-					<td class="artname">Artname</td>
-					<td class="artistname">Artist</td>
-					<td class="artdesc">description</td>
-					<td class="artprice">Price</td>
-					<td class="carttable"><input class="addtocart" type="submit" onclick="window.location.href = 'itemview.php'" value="View Item"></input><br><input class="addtocart" type="submit" value="Add to Cart"></input></td>
-				</tr>
-				<tr>
-					<td class="image"><img src="source/royaltyfreeart.jpg" alt="Picture of Art" width="100%"></td>
-					<td class="artname">Artname</td>
-					<td class="artistname">Artist</td>
-					<td class="artdesc">description</td>
-					<td class="artprice">Price</td>
-					<td class="carttable"><input class="addtocart" type="submit" onclick="window.location.href = 'itemview.php'" value="View Item"></input><br><input class="addtocart" type="submit" value="Add to Cart"></input></td>
-				</tr>
-				<tr>
-					<td class="image"><img src="sources/royaltyfreeart.jpg" alt="Picture of Art" width="100%"></td>
-					<td class="artname">Artname</td>
-					<td class="artistname">Artist</td>
-					<td class="artdesc">description</td>
-					<td class="artprice">Price</td>
-					<td class="carttable"><input class="addtocart" type="submit" onclick="window.location.href = 'itemview.php'" value="View Item"></input><br><input class="addtocart" type="submit" value="Add to Cart"></input></td>
-				</tr>
+			$conn = new mysqli($hn, $un, $pw, $db);
+			
+			if($conn->connect_error)
+				die($conn->connect_error);
 				
-				
-				
-			</table>
+			echo "<table class='actualtable'>";
+				$query = "SELECT * FROM art";
+				$result = $conn->query($query);
+				while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+				$photo = $row['photo'];
+				echo "<tr> <td class='image'>";
+				echo "<img src='$photo' alt='Picture of Art' width='100%'></td>";
+					echo "<td class='artname'>".$row['title']."</td>";
+					//<td class="artname">Artname</td>
+					echo "<td class='artistname'>".$row['artist']."</td>";					
+					//<td class="artistname">Artist</td>
+					
+//					<td class="artdesc">description</td>
+					echo "<td class='artprice'>".$row['price']."</td>";
+//					<td class="artprice">Price</td>
+					$artID = $row['artID'];
+					echo "<td class='carttable'><input class='addtocart' type='submit' onclick=\"window.location.href = 'itemview.php?ID=$artID'\" value='View Item'></input>";
+					if($_SESSION['user']['admin'] == 0)
+						echo "<br><input class='addtocart' type='submit' value='Add to Cart'></input></td></tr>";
+				}					
+				echo "</table>";
+			?>
 		</div>
 	</div>
 </body>

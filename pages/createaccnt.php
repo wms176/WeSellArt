@@ -15,6 +15,9 @@
 				height: 200px;
 				background-color: dodgerblue;
 			}
+			.error{
+          		color: #FF0000;
+        	}
 			a:link{
 				color:black;
 				text-decoration:none;
@@ -57,7 +60,7 @@
 
 <body>
 <?php
-    if(isset($_POST['continue'])){
+    if(isset($_POST['Continue'])){
       $username = sanitizeString($_POST['username']);
 	  $firstName = sanitizeString($_POST['firstName']);
 	  $lastName = sanitizeString($_POST['lastName']);
@@ -69,10 +72,9 @@
 	  $city = sanitizeString($_POST['city']);
 	  $state = sanitizeString($_POST['state']);
 	  $zipCode = sanitizeString($_POST['zip']);
-	  $admin = FALSE;
-
-	 
+	  
 	  $correct = TRUE;
+	  
 	  if ($email != $confirmEmail) {
 			$emailError = "Your email addresses do not match!";
 			$correct = FALSE;
@@ -82,34 +84,28 @@
 			$correct = FALSE;
 	  }
 	  if ($correct === TRUE) {
-		  	$token = encrypt($confirmPassword);
+		  	$password = encrypt($password);
 			require_once 'accountClass.php';
-			$account = new Account($firstName, $lastName, $username, $token, $confirmEmail, $address, $city, $state, $zipCode, $admin);
-
-			require_once 'login.php';
-			$query = "SELECT * FROM users WHERE username= '$username' AND password= '$token' LIMIT 1";
-			$result = $connection->query($query);
-			$logged_in_user = mysqli_fetch_assoc($result);
-        	if ($logged_in_user['admin'] === TRUE) {
-          		$_SESSION['user'] = $logged_in_user;
-          		$_SESSION['success'] = "You are now logged in";
-          		header('location: index.php');
-        	} else {
-          		$_SESSION['user'] = $logged_in_user;
-          		$_SESSION['success'] = "You are now logged in";
-         		header('location: index.php');
-        	}  
-	  }
+			$account = new Account();
+			$account->setAccount($username, $email, $password, $firstName, $lastName, $address, $city, $state, $zipCode);
+			$result = $account->createAccount();
+			if (mysqli_num_rows($result) == 1) {
+				$logged_in_user = mysqli_fetch_assoc($result);
+			    $_SESSION['user'] = $logged_in_user;
+			    $_SESSION['success'] = "You are now logged in";
+				header('location: index.php'); // replace with the admin homepage
+			}
+		}
 
 	}
 
-    function encrypt($pass) {
-      $salt1 = "qm&h*";
-      $salt2 = "pg!@";
-      $token = hash('ripemd128', "$salt1$pass$salt2");
-      return $token;
-    }
-
+	function encrypt($pass) {
+        $salt1 = "qm&h*";
+        $salt2 = "pg!@";
+        $token = hash('ripemd128', "$salt1$pass$salt2");
+        return $token;
+	}
+	
     function sanitizeString($data) {
     $data = strip_tags($data);
     $data = stripslashes($data);
@@ -120,7 +116,7 @@
 	<div class="header">
 		<div class="title">
 		<a href="index.php" ><h1>WeSellArt.com</h1></a>
-		<h3>We here at WeSellArt.com are dedicated to selling you quality* art at unreasonable prices.</h3>
+		We here at WeSellArt.com are dedicated to selling you quality* art at unreasonable prices.
 		<h6>*We do not ensure the quality of any artwork.</h6>
 		</div>
 		<div class="useroptions">
@@ -132,56 +128,78 @@
 	
 	</div>
 	<div class="main">
-		<h3>Please Enter Username:</h3>
+	<form method="post" action="createaccnt.php">
+		Please Enter Username:
 		<br>
 		<input type="text" name= "username" style="width:200px;"></input>
 		<br>
-		<h3>Please Enter First Name:</h3>
+		<br>
+
+		Please Enter First Name:
 		<br>
 		<input type="text" name= "firstName" style="width:200px;"></input>
 		<br>
-		<h3>Please Enter Last Name:</h3>
+		<br>
+
+		Please Enter Last Name:
 		<br>
 		<input type="text" name= "lastName" style="width:200px;"></input>
 		<br>
-		<h3>Please Enter Email:</h3>
+		<br>
+
+		Please Enter Email:
 		<br>
 		<input type="text" name= "email" style="width:200px;"></input>
 		<br>
-		<h3>Please Confirm Email:</h3>
+		<br>
+
+		Please Confirm Email:
 		<br>
 		<input type="text" name= "confirmEmail" style="width:200px;"></input>
-		<span class="error"><?php echo $emailError; ?></span>
+		<span class="error"><br><?php echo $emailError; ?></span>
 		<br>
-		<h3>Please Enter Password:</h3>
+		<br>
+
+		Please Enter Password:
 		<br>
 		<input type="text" name="password" style="width:200px;"></input>
 		<br>
-		<h3>Please Confirm Password:</h3>
+		<br>
+
+		Please Confirm Password:
 		<br>
 		<input type="text" name="confirmPass" style="width:200px;"></input>
-		<span class="error"><?php echo $passError; ?></span>
+		<span class="error"><br><?php echo $passError; ?></span>
 		<br>
-		<h3>Please Enter Shipping Address:</h3>
 		<br>
-		<h4>Street</h4>
+
+		Please Enter Shipping Address:
+		<br>
+		Street:
 		<br>
 		<input type="text" name="address" style="width:200px;"></input>
 		<br>
-		<h4>City</h4>
+		<br>
+
+		City:
 		<br>
 		<input type="text" name="city" style="width:200px;"></input>
 		<br>
-		<h4>State</h4>
+		<br>
+
+		State:
 		<br>
 		<input type="text" name="state" style="width:200px;"></input>
 		<br>
-		<h4>Zip Code</h4>
+		<br>
+
+		Zip Code:
 		<br>
 		<input type="text" name="zip" style="width:200px;"></input>
 		<br>
 		<br>
 		<input class="submit" name="Continue" type="submit" style="width:200px;" value="Continue"></input>
+	</form>
 		
 	</div>
 </body>

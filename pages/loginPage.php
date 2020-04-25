@@ -42,7 +42,10 @@
 				align: left;
 				position: absolute;
 				left: 5px;
-			}	
+			}
+			.error{
+          		color: #FF0000;
+        	}	
 			.useroptions{
 				position: absolute;
 				right:0;
@@ -76,23 +79,18 @@
 
 			$token = encrypt($myPassword);
 			  
-			 require_once 'login.php';
+			require_once 'login.php';
     		$connection = new mysqli($hn, $un, $pw, $db);
       
-      		$query = "SELECT * FROM users WHERE username= '$myUsername' AND password= '$token' LIMIT 1";
+      		$query = "SELECT * FROM users WHERE username= '$myUsername' AND password= '$myPassword' LIMIT 1"; // change $myPassword to $token to encrypt
       		$result = $connection->query($query);
      
       		if (mysqli_num_rows($result) == 1) {
-       		$logged_in_user = mysqli_fetch_assoc($result);
-        		if ($logged_in_user['admin'] === TRUE) {
-          			$_SESSION['user'] = $logged_in_user;
-          			$_SESSION['success'] = "You are now logged in";
-          			header('location: index.php'); // replace with the admin homepage
-        		} else {
-          			$_SESSION['user'] = $logged_in_user;
-          			$_SESSION['success'] = "You are now logged in";
-          			header('location: index.php');
-        		}
+       			$logged_in_user = mysqli_fetch_assoc($result);
+          		$_SESSION['user'] = $logged_in_user;
+          		$_SESSION['success'] = "You are now logged in";
+				header('location: index.php');
+				
       		} else {
         		$loginError = "Wrong username/password combination";
       		}
@@ -118,7 +116,7 @@
 	<div class="header">
 		<div class="title">
 		<a href="index.php" ><h1>WeSellArt.com</h1></a>
-		<h3>We here at WeSellArt.com are dedicated to selling you quality* art at unreasonable prices.</h3>
+		We here at WeSellArt.com are dedicated to selling you quality* art at unreasonable prices.
 		<h6>*We do not ensure the quality of any artwork.</h6>
 		</div>
 		<div class="useroptions">
@@ -130,16 +128,19 @@
 	
 	</div>
 	<div class="main">
-		<h3>Please Enter Username:</h3>
+	<form method="post" action="loginPage.php">
+		Please Enter Username:
 		<br>
 		<input type="text" name = "username" style="width:200px;"></input>
 		<br>
-		<h3>Please Enter Password:</h3>
+		Please Enter Password:
 		<br>
 		<input type="text" name = "password" style="width:200px;"></input>
 		<br>
 		<br>
+		<span class="error"><?php echo $loginError; ?></span>
 		<input class="submit" type="submit" name = "loginButton" style="width:200px;" value="Login"></input>
+		</form>
 	</div>
 </body>
 

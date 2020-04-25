@@ -1,10 +1,12 @@
 <?php 
+		session_start();
+
 		if(!isset($_SESSION['user'])) {
-			echo "<span class='error'>Please Login to access this page.</span>";
-			echo "<br><br><a href='loginPage.php'>Login</a>";
+			header("location: loginPage.php");
 		  }		  
 		else {
 			$user = $_SESSION['user']['username'];
+		}
 		?>
 <!DOCTYPE html>
 <html lang="en">
@@ -91,11 +93,11 @@
 		<!--IF NOT LOGGED IN:
 		<input class="submit" type="submit" value="Login"></input>-->
 		<!--IF LOGGED IN:-->
-		<h3>Hello, $username</h3>
+		<h3>Hello, <?php echo $_SESSION['user']['username']?></h3>
 
 		<input class="submit" type="submit" onclick="window.location.href = 'cartview.php'" value="Cart"></input>
 		
-		<input class="submit" type="submit" onclick="window.location.href='logout.php'" value="Logout"></input>
+		<input class="submit" type="submit" onclick="window.location.href='logoutPage.php'" value="Logout"></input>
 		<br><br>
 		<input class="submit" type="submit" onclick="window.location.href='account.php'" value="View Account"></input>
 		
@@ -125,23 +127,38 @@
 			</form>
 		</div>
 		<!--query for item info-->
-		<div class="item">
-			<div class="itemimage">
-				<img src="source/royaltyfreeart.jpg" alt="Picture of Art" width="70%">
-			</div>
-			<div class="itemname">
-				<h2>itemname</h2>
-			</div>
-			<div class="itemprice">
-				<h3>itemprice</h3>
-			</div>
-			<div class="addtocart">
-				<input class="addtocart" type="submit" value="Add to Cart"></input>
-			</div>
-			<div class="itemdesc">
-				<p>item description lorem ipsum blah blah blah</p>
-			</div>
-		</div>
+		<?php
+			$artID = $_GET['ID'];
+			require_once 'login.php';
+			$connection = new mysqli($hn, $un, $pw, $db);
+
+  			$query = "SELECT * FROM art WHERE artID= '$artID'";
+			$result = $connection->query($query);
+			
+			while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+				echo "<div class='item'>";
+				echo "<div class='itemimage'>";
+				$photo = $row['photo'];
+				echo "<img src='$photo' alt='Picture of Art' width='70%'>";
+				echo "</div>";
+				echo "<div class='itemname'>";
+				echo "<h2>".$row['title']."</h2>";
+				echo "</div>";
+				echo "<div class='itemprice'>";
+				echo "<h3>".$row['price']."</h3>";
+				echo "</div>";
+				echo "<div class='addtocart'>";
+				echo "<input class='addtocart' type='submit' value='Add to Cart'></input>";
+				echo "</div>";
+				echo "<div class='itemdesc'>";
+				echo "<p>This piece was created by ".$row['artist']." on ".$row['creationDate'].". It is a ".$row['media'].".</p><br>";
+				echo "<p>There are ".$row['quantity']. " available.</p>";
+				echo "</div>";
+				echo "</div>";
+			}
+
+
+		?>
 	</div>
 </body>
 
