@@ -42,7 +42,10 @@
 				align: left;
 				position: absolute;
 				left: 5px;
-			}	
+			}
+			.error{
+          		color: #FF0000;
+        	}	
 			.useroptions{
 				position: absolute;
 				right:0;
@@ -79,14 +82,14 @@
 			require_once 'login.php';
     		$connection = new mysqli($hn, $un, $pw, $db);
       
-      		$query = "SELECT * FROM users WHERE username= '$myUsername' AND password= '$myPassword' LIMIT 1";
+      		$query = "SELECT * FROM users WHERE username= '$myUsername' AND password= '$myPassword' LIMIT 1"; // change $myPassword to $token to encrypt
       		$result = $connection->query($query);
      
       		if (mysqli_num_rows($result) == 1) {
        			$logged_in_user = mysqli_fetch_assoc($result);
           		$_SESSION['user'] = $logged_in_user;
           		$_SESSION['success'] = "You are now logged in";
-				header('location: index.php'); // replace with the admin homepage
+				header('location: index.php');
 				
       		} else {
         		$loginError = "Wrong username/password combination";

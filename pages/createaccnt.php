@@ -16,7 +16,7 @@
 				background-color: dodgerblue;
 			}
 			.error{
-          color: #FF0000;
+          		color: #FF0000;
         	}
 			a:link{
 				color:black;
