@@ -158,36 +158,9 @@
 //					<td class="artprice">Price</td>
 					echo "<td class='carttable'><input class='addtocart' type='submit' onclick='window.location.href = 'itemview.php'' value='View Item'></input><br><input class='addtocart' type='submit' value='Add to Cart'></input></td>
 				</tr>";
-				}
-			?>	
-			<!--	<tr>
-					<td class="image"><img src="royaltyfreeart.jpg" alt="Picture of Art" width="100%"></td>
-					<td class="artname">Artname</td>
-					<td class="artistname">Artist</td>
-					<td class="artdesc">description</td>
-					<td class="artprice">Price</td>
-					<td class="carttable"><input class="addtocart" type="submit" onclick="window.location.href = 'itemview.php'" value="View Item"></input><br><input class="addtocart" type="submit" value="Add to Cart"></input></td>
-				</tr>
-				<tr>
-					<td class="image"><img src="royaltyfreeart.jpg" alt="Picture of Art" width="100%"></td>
-					<td class="artname">Artname</td>
-					<td class="artistname">Artist</td>
-					<td class="artdesc">description</td>
-					<td class="artprice">Price</td>
-					<td class="carttable"><input class="addtocart" type="submit" onclick="window.location.href = 'itemview.php'" value="View Item"></input><br><input class="addtocart" type="submit" value="Add to Cart"></input></td>
-				</tr>
-				<tr>
-					<td class="image"><img src="royaltyfreeart.jpg" alt="Picture of Art" width="100%"></td>
-					<td class="artname">Artname</td>
-					<td class="artistname">Artist</td>
-					<td class="artdesc">description</td>
-					<td class="artprice">Price</td>
-					<td class="carttable"><input class="addtocart" type="submit" onclick="window.location.href = 'itemview.php'" value="View Item"></input><br><input class="addtocart" type="submit" value="Add to Cart"></input></td>
-				</tr>
-				
-				-->
-				
-			</table>
+				}					
+				echo "</table>";
+			?>
 		</div>
 	</div>
 </body>
