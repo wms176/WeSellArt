@@ -6,6 +6,8 @@
 		else {
 			$user = $_SESSION['user']['username'];
 		}
+		$search=$_GET['search'];
+
 		?>	
 <!DOCTYPE html>
 <html lang="en">
@@ -83,7 +85,7 @@
 				border-top-style:solid;
 				border-bottom-style:solid;
 				border-width:5px;
-				width:20%;
+				width:30%;
 				height:100px;
 			}
 			
@@ -120,23 +122,29 @@
 	
 	</div>
 	<div class="main">
+		<?php 
+			$query = "SELECT * FROM art WHERE title like '%$search%' ORDER BY '$sort';" 
+			
+		?>
 		<div class="sidebar">
+			<form method="GET" action="index.php">
 			<h3 style="text-align:center;"> Search </h3>
-			<input type="text" style="width:80%; margin:auto; position: relative; right:2px; left:2px;"></input>
+			<input type="text" name="search" searchstyle="width:80%; margin:auto; position: relative; right:2px; left:2px;"></input>
 			<input type="submit" value="search" style="width:80%; margin: auto; position: relative;  right:2px; left:2px;"></input>
 			<br><br><br>
-			<h3 style="text-align:center;"> Sort </h3>
-			<form>
-			    <select id="ascdec">
-				  <option value="ascend">Ascending</option>
-				  <option value="descend">Descending</option>
+			<!--<h3 style="text-align:center;"> Sort </h3>
+			
+			    <select name="ascdec" id="ascdec">
+				  <option value="ASC">Ascending</option>
+				  <option value="DESC">Descending</option>
 				</select><br>
-			  <input type="radio" id="name" name="sort" value="name">
+			  <input type="radio" id="name" name="sort" value="artTitle">
 			  <label for="name">Name</label><br>
-			  <input type="radio" id="price" name="sort" value="price">
+			  <input type="radio" id="price" name="sort" value="artPrice">
 			  <label for="price">Price</label><br>
 			  <input type="radio" id="artist" name="sort" value="artist">
 			  <label for="artist">Artist</label>
+			  <input type="submit"style="width:80%; margin: auto; position: relative;  right:2px; left:2px;"></input>-->
 			</form>
 		</div>
 		<div class="listingtable">
@@ -149,7 +157,7 @@
 				die($conn->connect_error);
 				
 			echo "<table class='actualtable'>";
-				$query = "SELECT * FROM art";
+				
 				$result = $conn->query($query);
 				while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
 				$photo = $row['photo'];
