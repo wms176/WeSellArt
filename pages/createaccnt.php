@@ -57,7 +57,7 @@
 
 <body>
 <?php
-    if(isset($_POST['continue'])){
+    if(isset($_POST['Continue'])){
       $username = sanitizeString($_POST['username']);
 	  $firstName = sanitizeString($_POST['firstName']);
 	  $lastName = sanitizeString($_POST['lastName']);
@@ -120,7 +120,7 @@
 	<div class="header">
 		<div class="title">
 		<a href="index.php" ><h1>WeSellArt.com</h1></a>
-		<h3>We here at WeSellArt.com are dedicated to selling you quality* art at unreasonable prices.</h3>
+		We here at WeSellArt.com are dedicated to selling you quality* art at unreasonable prices.
 		<h6>*We do not ensure the quality of any artwork.</h6>
 		</div>
 		<div class="useroptions">
@@ -132,37 +132,38 @@
 	
 	</div>
 	<div class="main">
-		<h3>Please Enter Username:</h3>
+	<form method="post" action="createaccnt.php">
+		Please Enter Username:
 		<br>
 		<input type="text" name= "username" style="width:200px;"></input>
 		<br>
-		<h3>Please Enter First Name:</h3>
+		Please Enter First Name:
 		<br>
 		<input type="text" name= "firstName" style="width:200px;"></input>
 		<br>
-		<h3>Please Enter Last Name:</h3>
+		Please Enter Last Name:
 		<br>
 		<input type="text" name= "lastName" style="width:200px;"></input>
 		<br>
-		<h3>Please Enter Email:</h3>
+		Please Enter Email:
 		<br>
 		<input type="text" name= "email" style="width:200px;"></input>
 		<br>
-		<h3>Please Confirm Email:</h3>
+		Please Confirm Email:
 		<br>
 		<input type="text" name= "confirmEmail" style="width:200px;"></input>
 		<span class="error"><?php echo $emailError; ?></span>
 		<br>
-		<h3>Please Enter Password:</h3>
+		Please Enter Password:
 		<br>
 		<input type="text" name="password" style="width:200px;"></input>
 		<br>
-		<h3>Please Confirm Password:</h3>
+		Please Confirm Password:
 		<br>
 		<input type="text" name="confirmPass" style="width:200px;"></input>
 		<span class="error"><?php echo $passError; ?></span>
 		<br>
-		<h3>Please Enter Shipping Address:</h3>
+		Please Enter Shipping Address:
 		<br>
 		<h4>Street</h4>
 		<br>
@@ -182,6 +183,7 @@
 		<br>
 		<br>
 		<input class="submit" name="Continue" type="submit" style="width:200px;" value="Continue"></input>
+	</form>
 		
 	</div>
 </body>
