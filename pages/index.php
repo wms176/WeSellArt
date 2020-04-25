@@ -148,7 +148,7 @@
 				$result = $conn->query($query);
 				while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
 				echo "<tr> <td class='image'>";
-				echo "<img src=".$row['photo']."alt='Picture of Art' width='100%'></td>";
+				echo "<img src=".$row['photo']."alt='Picture of Art' width='100%'></td>"; // This is what isn't exactly correct
 					echo "<td class='artname'>".$row['title']."</td>";
 					//<td class="artname">Artname</td>
 					echo "<td class='artistname'>".$row['artist']."</td>";					
