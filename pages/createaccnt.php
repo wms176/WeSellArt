@@ -69,10 +69,9 @@
 	  $city = sanitizeString($_POST['city']);
 	  $state = sanitizeString($_POST['state']);
 	  $zipCode = sanitizeString($_POST['zip']);
-	  $admin = FALSE;
-
-	 
+	  
 	  $correct = TRUE;
+	  
 	  if ($email != $confirmEmail) {
 			$emailError = "Your email addresses do not match!";
 			$correct = FALSE;
@@ -84,21 +83,10 @@
 	  if ($correct === TRUE) {
 		  	$token = encrypt($confirmPassword);
 			require_once 'accountClass.php';
-			$account = new Account($firstName, $lastName, $username, $token, $confirmEmail, $address, $city, $state, $zipCode, $admin);
-
-			require_once 'login.php';
-			$query = "SELECT * FROM users WHERE username= '$username' AND password= '$token' LIMIT 1";
-			$result = $connection->query($query);
-			$logged_in_user = mysqli_fetch_assoc($result);
-        	if ($logged_in_user['admin'] === TRUE) {
-          		$_SESSION['user'] = $logged_in_user;
-          		$_SESSION['success'] = "You are now logged in";
-          		header('location: index.php');
-        	} else {
-          		$_SESSION['user'] = $logged_in_user;
-          		$_SESSION['success'] = "You are now logged in";
-         		header('location: index.php');
-        	}  
+			$account = new Account();
+			$account->setAccount($username, $email, $token, $firstName, $lastName, $address, $city, $state, $zipCode);
+			$account->createAccount();
+			header("location: index.php");
 	  }
 
 	}
@@ -137,47 +125,67 @@
 		<br>
 		<input type="text" name= "username" style="width:200px;"></input>
 		<br>
+		<br>
+
 		Please Enter First Name:
 		<br>
 		<input type="text" name= "firstName" style="width:200px;"></input>
 		<br>
+		<br>
+
 		Please Enter Last Name:
 		<br>
 		<input type="text" name= "lastName" style="width:200px;"></input>
 		<br>
+		<br>
+
 		Please Enter Email:
 		<br>
 		<input type="text" name= "email" style="width:200px;"></input>
 		<br>
+		<br>
+
 		Please Confirm Email:
 		<br>
 		<input type="text" name= "confirmEmail" style="width:200px;"></input>
 		<span class="error"><?php echo $emailError; ?></span>
 		<br>
+		<br>
+
 		Please Enter Password:
 		<br>
 		<input type="text" name="password" style="width:200px;"></input>
 		<br>
+		<br>
+
 		Please Confirm Password:
 		<br>
 		<input type="text" name="confirmPass" style="width:200px;"></input>
 		<span class="error"><?php echo $passError; ?></span>
 		<br>
+		<br>
+
 		Please Enter Shipping Address:
 		<br>
-		<h4>Street</h4>
+		Street:
 		<br>
 		<input type="text" name="address" style="width:200px;"></input>
 		<br>
-		<h4>City</h4>
+		<br>
+
+		City:
 		<br>
 		<input type="text" name="city" style="width:200px;"></input>
 		<br>
-		<h4>State</h4>
+		<br>
+
+		State:
 		<br>
 		<input type="text" name="state" style="width:200px;"></input>
 		<br>
-		<h4>Zip Code</h4>
+		<br>
+
+		Zip Code:
 		<br>
 		<input type="text" name="zip" style="width:200px;"></input>
 		<br>
