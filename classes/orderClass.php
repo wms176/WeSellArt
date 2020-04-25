@@ -36,15 +36,17 @@ class Order{
 	//ALTERED FROM DESIGN DOC FOR EASE OF USE.
 	//takes in all of the current info from the class and creates an entry in the database.
 	//requires reinitialization to get new data like timestamp or orderID.
+	//returns the ID of the inserted function.
 	public function insertOrder(){
 		$userID = $this->userID;
 		$itemsBought = $this->itemsBought;
+
 		$query = "INSERT INTO orders (timeoforder,userID, itemsBought) VALUES (now() , $this->userID ,'$itemsBought')";
 		$return = $this->conn->query($query);
 		if(!$return){
 			echo("Error description: " . $this->conn->error);
 		}
-		return $return;
+		return $this->conn->insert_id;
 	}
 	
 	//returns an array of all OrderId's 

@@ -23,6 +23,9 @@ class Cart{
 		if($cartID != -1){			
 			$query = "SELECT * FROM cart WHERE cartID = '$cartID'";
 			$result = $this->conn->query($query);
+			if($result == FALSE){
+				return FALSE;
+			}
 			while($row = $result->fetch_array()){
 				$this->cartID = $row['cartID'];
 				$this->userID = $row['userID'];
@@ -34,11 +37,55 @@ class Cart{
 		if($cartID == -1){
 			$this->items = array();
 		}
+		return TRUE;
 	}
+	
+	//takes all of the elements, determines if there is enough of each artwork to fulfill the order, and returns a boolean indicating if checkout was successful.
+	//also zereos out total and items for this class, and inserts an order with the prescribed methods.
+	//Assumes authentication has already been done.
+	public function checkout(){
+		$itemarray = json_decode($this->items, TRUE);
+		$ids = array_keys($itemarray);
+		require_once("orderClass.php");
+		
+		//purpose of loop: to check and make sure theres anough of each artwork to satisfy the order.
+		for($i = 0; $i<sizeof($itemarray);$i++){
+			$query = "SELECT quantity FROM art WHERE artID = $ids[$i]";
+			$result = $this->conn->query($query);
+			if($result != FALSE){;
+				$result = $result->fetch_array();
+				//if this loop passes, then NOT theres enough of that item to satisfy the order., so return false.
+				if(!($result['quantity'] >= $itemarray[$ids[$i]])){
+					return FALSE;
+				}
+			}
+		}
+		//second loop in order to update quantities.
+		for($i = 0; $i<sizeof($itemarray);$i++){
+			$quantity = $itemarray[$ids[$i]];
+			$id = $ids[$i];
+			$query = "UPDATE art SET quantity=(quantity - $quantity) WHERE artID = $id";
+			$result = $this->conn->query($query);
+			if($result == FALSE){
+				return FALSE;
+			}
+		}
+		//final obligations.
+		$query = "INSERT INTO orders (timeoforder,userID, itemsBought) VALUES (now() , $this->userID ,'$this->items')";
+		$return = $this->conn->query($query);
+		if(!$return){
+			echo("Error description: " . $this->conn->error);
+		}
+		$orderID = $this->conn->insert_id;
+		$this->items = array();
+		$this->total = 0;
+		return $orderID;
+	}
+	
 	
 	//ALTERED FROM DESIGN DOC FOR EASE OF USE.
 	//takes in all of the current info from the class and creates an entry in the database.
-	//requires reinitialization to get new data like timestamp or orderID.
+	//necessitates reinitialization to get new data like timestamp or orderID.
 	public function createCart(){
 		$query = "INSERT INTO cart (cartID,userID, total, items) VALUES ($this->cartID, $this->userID ,$this->total,'$this->items')";
 		$return = $this->conn->query($query);
