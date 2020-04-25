@@ -23,13 +23,11 @@
   session_start();
 
   if(!isset($_SESSION['user'])) {
-    echo "<span class='error'>Please Login to access this page.</span>";
-    echo "<br><br><a href='loginPage.php'>Login</a>";
+    header("location: loginPage.php");
   }
 
-  else if($_SESSION['user']['type'] != 'admin') {
-    echo "<span class='error'>Please login as an Admin to access this page</span>";
-    echo "<br><br><a href='logoutPage.php'>Logout</a>";
+  else if($_SESSION['user']['admin'] != 1) {
+    header("location: index.php");
   } 
 
   else {
@@ -38,25 +36,39 @@
     require_once 'login.php';
     $connection = new mysqli($hn, $un, $pw, $db);
 
-    $query = "SELECT * FROM lab5_orders";
+    $query = "SELECT * FROM users";
     $result = $connection->query($query);
 
-    echo "<table style='width:30%'>";
-		  echo "<tr><th>Name</th><th>Category</th><th>Cost</th><th>City</th><th>State</th></tr>";
+    echo "<table style='width:100%'>";
+		  echo "<tr><th>userID</th><th>Username</th><th>first Name</th><th>last Name</th><th>Address</th><th>City</th><th>State</th><th>Zipcode</th><th>Admin</th></tr>";
 		  while($row = $result->fetch_array()){
   			echo "<tr><td>";
-	  		echo $row['orderID'];
+	  		echo $row['userID'];
 		  	echo "</td><td>";
 			  echo $row['username'];
   			echo "</td><td>";
-	  		echo $row['orderTotal'];
+	  		echo $row['firstName'];
 		  	echo "</td><td>";
-  			echo $row['quantity'];
+  			echo $row['lastName'];
 	  		echo "</td><td>";
-		  	echo $row['shipping'];
+        echo $row['address'];
+        echo "</td><td>";
+        echo $row['city'];
+        echo "</td><td>";
+        echo $row['state'];
+        echo "</td><td>";
+        echo $row['zip'];
+        echo "</td><td>";
+        if($row['admin'] == 1)
+          $admin = 'Yes';
+        else
+          $admin = 'No';
+        echo $admin;
 			  echo "</td></tr>";
 		  }
     echo "</table>";
+
+  echo "<br><br><a href='inventory.php'>View/Edit inventory</a>";
   echo "<br><br><a href='logoutPage.php'>Logout</a>";
   }
 ?>

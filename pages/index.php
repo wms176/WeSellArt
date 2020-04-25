@@ -103,8 +103,13 @@
 		
 		<h3>Hello, <?php echo $_SESSION['user']['username']; ?></h3>
 
-		<input class="submit" type="submit" onclick="window.location.href = 'cartview.php'" value="Cart"></input>
-		
+		<?php 
+		if($_SESSION['user']['admin'] == 1){
+			echo "<input class='submit' type='submit' onclick=\"window.location.href='adminPage.php'\" value='Admin Page'></input>";
+		} else {
+			echo "<input class='submit' type='submit' onclick=\"window.location.href = 'cartview.php'\" value='Cart'></input>";	
+		}
+		?>		
 		<input class="submit" type="submit" onclick="window.location.href='logoutPage.php'" value="Logout"></input>
 		<br><br>
 		<input class="submit" type="submit" onclick="window.location.href='account.php'" value="View Account"></input>
@@ -159,8 +164,9 @@
 					echo "<td class='artprice'>".$row['price']."</td>";
 //					<td class="artprice">Price</td>
 					$artID = $row['artID'];
-					echo "<td class='carttable'><input class='addtocart' type='submit' onclick=\"window.location.href = 'itemview.php?ID=$artID'\" value='View Item'></input><br><input class='addtocart' type='submit' value='Add to Cart'></input></td>
-				</tr>";
+					echo "<td class='carttable'><input class='addtocart' type='submit' onclick=\"window.location.href = 'itemview.php?ID=$artID'\" value='View Item'></input>";
+					if($_SESSION['user']['admin'] == 0)
+						echo "<br><input class='addtocart' type='submit' value='Add to Cart'></input></td></tr>";
 				}					
 				echo "</table>";
 			?>
