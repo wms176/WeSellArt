@@ -139,7 +139,8 @@
 			while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
 				echo "<div class='item'>";
 				echo "<div class='itemimage'>";
-				echo "<img src='source/royaltyfreeart.jpg' alt='Picture of Art' width='70%'>";
+				$photo = $row['photo'];
+				echo "<img src='$photo' alt='Picture of Art' width='70%'>";
 				echo "</div>";
 				echo "<div class='itemname'>";
 				echo "<h2>".$row['title']."</h2>";
