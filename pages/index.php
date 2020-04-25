@@ -1,8 +1,6 @@
 <?php 
 		if(!isset($_SESSION['user'])) {
-			echo "<span class='error'>Please Login to access this page.</span>";
-			echo "<br><br><a href='loginPage.php'>Login</a>";
-		  }		  
+			header('location: loginPage.php');	  
 		else {
 			$user = $_SESSION['user']['username'];
 		}
