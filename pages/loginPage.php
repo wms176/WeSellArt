@@ -82,7 +82,7 @@
 			require_once 'login.php';
     		$connection = new mysqli($hn, $un, $pw, $db);
       
-      		$query = "SELECT * FROM users WHERE username= '$myUsername' AND password= '$myPassword' LIMIT 1"; // change $myPassword to $token to encrypt
+      		$query = "SELECT * FROM users WHERE username= '$myUsername' AND password= '$token' LIMIT 1"; // change $myPassword to $token to encrypt
       		$result = $connection->query($query);
      
       		if (mysqli_num_rows($result) == 1) {

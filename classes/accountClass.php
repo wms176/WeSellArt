@@ -14,7 +14,7 @@ class Account {
     private $zipCode;
     private $admin;
 
-    public function setAccount($username, $email, $password, $firstName, $lastName, $address, $city, $state, $zipCode){
+    public function __Construct($username, $email, $password, $firstName, $lastName, $address, $city, $state, $zipCode){
         $this->userID = NULL; 
         $this->firstName = $firstName;
         $this->lastName = $lastName;
@@ -25,7 +25,18 @@ class Account {
         $this->city = $city;
         $this->state = $state;
         $this->zipCode = $zipCode;
-        $this->admin = NULL;	
+        $this->admin = NULL;
+        
+        require_once 'login.php';
+        $connection = new mysqli($hn, $un, $pw, $db);
+        if ($connection->connect_error)
+            die($connection->connect_error);
+		$query = "INSERT INTO users (username, email, password, 
+            firstName, LastName, address, city, state, zip) 
+            VALUES ('$username', '$email', '$password', '$firstName', '$lastName', '$address', '$city', '$state', '$zipCode')";
+        $result = $connection->query($query);
+        if (!$result)
+            die($connection->error);
     }
     
     public function encrypt($pass) {
@@ -34,18 +45,6 @@ class Account {
         $token = hash('ripemd128', "$salt1$pass$salt2");
         return $token;
     }
-
-    public function createAccount(){
-        require_once 'login.php';
-        $connection = new mysqli($hn, $un, $pw, $db);
-		$query = "INSERT INTO users (userID, username, email, password, 
-            firstName, LastName, address, city, state, zip, admin) 
-            VALUES ('$this->userID', '$this->username', '$this->email', '$this->password', 
-            '$this->firstName', '$this->lastName', '$this->address', '$this->city', 
-            '$this->state', '$this->zipCode', '$this->admin')";
-        $return = $connection->query($query);
-        return $return;
-	}
 
     public function deleteAccount($username) {
         require_once 'login.php';

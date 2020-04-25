@@ -86,15 +86,8 @@
 	  if ($correct === TRUE) {
 		  	$password = encrypt($password);
 			require_once 'accountClass.php';
-			$account = new Account();
-			$account->setAccount($username, $email, $password, $firstName, $lastName, $address, $city, $state, $zipCode);
-			$result = $account->createAccount();
-			if (mysqli_num_rows($result) == 1) {
-				$logged_in_user = mysqli_fetch_assoc($result);
-			    $_SESSION['user'] = $logged_in_user;
-			    $_SESSION['success'] = "You are now logged in";
-				header('location: index.php'); // replace with the admin homepage
-			}
+			$account = new Account($username, $email, $password, $firstName, $lastName, $address, $city, $state, $zipCode);
+			header("location: loginPage.php");
 		}
 
 	}
