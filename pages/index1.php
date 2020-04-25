@@ -7,12 +7,6 @@
 			$user = $_SESSION['user']['username'];
 		}
 		?>
-		<?php require_once('login.php');?>
-	<?php
-		$conn = new mysqli($hn, $un, $pw, $db);
-		if($conn->connect_error)
-			die($conn->connect_error);
-	?>	
 <!DOCTYPE html>
 <html lang="en">
 
@@ -107,7 +101,7 @@
 		<div class="useroptions">
 		
 		
-		<h3>Hello, <?php echo $_SESSION['user']['username']; ?></h3>
+		<h3>Hello, <?php echo $_SESSION['user']['username'] ?></h3>
 
 		<input class="submit" type="submit" onclick="window.location.href = 'cartview.php'" value="Cart"></input>
 		
@@ -141,26 +135,44 @@
 			</form>
 		</div>
 		<div class="listingtable">
-		<?php
-			echo "<table class='actualtable'>";
-				$query = "SELECT * FROM art";
-				$result = $conn->query($query);
-				while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
-				echo "<tr>
-					<td class='image'><img src='royaltyfreeart.jpg' alt='Picture of Art' width='100%'></td>";
-					echo "<td class='artname'>".$row['title']."</td>";
-					//<td class="artname">Artname</td>
-					echo "<td class='artistname'>".$row['artist']."</td>";					
-					//<td class="artistname">Artist</td>
-					
-//					<td class="artdesc">description</td>
-					echo "<td class='artprice'>".$row['price']."</td>";
-//					<td class="artprice">Price</td>
-					echo "<td class='carttable'><input class='addtocart' type='submit' onclick='window.location.href = 'itemview.php'' value='View Item'></input><br><input class='addtocart' type='submit' value='Add to Cart'></input></td>
-				</tr>";
-				}					
-				echo "</table>";
-			?>
+			<table class="actualtable">
+				
+				<tr>
+					<td class="image"><img src="sources/royaltyfreeart.jpg" alt="Picture of Art" width="100%"></td>
+					<td class="artname">Artname</td>
+					<td class="artistname">Artist</td>
+					<td class="artdesc">description</td>
+					<td class="artprice">Price</td>
+					<td class="carttable"><input class="addtocart" type="submit" onclick="window.location.href = 'itemview.php'" value="View Item"></input><br><input class="addtocart" type="submit" value="Add to Cart"></input></td>
+				</tr>
+				<tr>
+					<td class="image"><img src="sources/royaltyfreeart.jpg" alt="Picture of Art" width="100%"></td>
+					<td class="artname">Artname</td>
+					<td class="artistname">Artist</td>
+					<td class="artdesc">description</td>
+					<td class="artprice">Price</td>
+					<td class="carttable"><input class="addtocart" type="submit" onclick="window.location.href = 'itemview.php'" value="View Item"></input><br><input class="addtocart" type="submit" value="Add to Cart"></input></td>
+				</tr>
+				<tr>
+					<td class="image"><img src="source/royaltyfreeart.jpg" alt="Picture of Art" width="100%"></td>
+					<td class="artname">Artname</td>
+					<td class="artistname">Artist</td>
+					<td class="artdesc">description</td>
+					<td class="artprice">Price</td>
+					<td class="carttable"><input class="addtocart" type="submit" onclick="window.location.href = 'itemview.php'" value="View Item"></input><br><input class="addtocart" type="submit" value="Add to Cart"></input></td>
+				</tr>
+				<tr>
+					<td class="image"><img src="sources/royaltyfreeart.jpg" alt="Picture of Art" width="100%"></td>
+					<td class="artname">Artname</td>
+					<td class="artistname">Artist</td>
+					<td class="artdesc">description</td>
+					<td class="artprice">Price</td>
+					<td class="carttable"><input class="addtocart" type="submit" onclick="window.location.href = 'itemview.php'" value="View Item"></input><br><input class="addtocart" type="submit" value="Add to Cart"></input></td>
+				</tr>
+				
+				
+				
+			</table>
 		</div>
 	</div>
 </body>
