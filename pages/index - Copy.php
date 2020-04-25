@@ -141,8 +141,8 @@
 			</form>
 		</div>
 		<div class="listingtable">
-			<table class="actualtable">
-			<?php
+		<?php
+			echo "<table class='actualtable'>";
 				$query = "SELECT * FROM art";
 				$result = $conn->query($query);
 				while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
