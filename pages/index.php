@@ -6,13 +6,7 @@
 		else {
 			$user = $_SESSION['user']['username'];
 		}
-		?>
-		<?php require_once('login.php');?>
-	<?php
-		$conn = new mysqli($hn, $un, $pw, $db);
-		if($conn->connect_error)
-			die($conn->connect_error);
-	?>	
+		?>	
 <!DOCTYPE html>
 <html lang="en">
 
@@ -142,6 +136,13 @@
 		</div>
 		<div class="listingtable">
 		<?php
+			require_once('login.php');
+				
+			$conn = new mysqli($hn, $un, $pw, $db);
+			
+			if($conn->connect_error)
+				die($conn->connect_error);
+				
 			echo "<table class='actualtable'>";
 				$query = "SELECT * FROM art";
 				$result = $conn->query($query);
