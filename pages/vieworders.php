@@ -106,7 +106,7 @@
 
 		<input class="submit" type="submit" onclick="window.location.href = 'cartview.php'" value="Cart"></input>
 		
-		<input class="submit" type="submit" onclick="window.location.href='logout.php'" value="Logout"></input>
+		<input class="submit" type="submit" onclick="window.location.href='logoutPage.php'" value="Logout"></input>
 		<br><br>
 		
 		<input class="submit" type="submit" onclick="window.location.href='account.php'" value="View Account"></input>

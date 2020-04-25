@@ -103,7 +103,7 @@
 		<h3>Hello, $username</h3>
 
 		
-		<input class="submit" type="submit" onclick="window.location.href='logout.php'" value="Logout"></input>
+		<input class="submit" type="submit" onclick="window.location.href='logoutPage.php'" value="Logout"></input>
 		
 		<input class="submit" type="submit" onclick="window.location.href='account.php'" value="View Account"></input>
 		<br><br>

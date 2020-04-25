@@ -24,12 +24,12 @@
 
   if(!isset($_SESSION['user'])) {
     echo "<span class='error'>Please Login to access this page.</span>";
-    echo "<br><br><a href='login_page.php'>Login</a>";
+    echo "<br><br><a href='loginPage.php'>Login</a>";
   }
 
   else if($_SESSION['user']['type'] != 'admin') {
     echo "<span class='error'>Please login as an Admin to access this page</span>";
-    echo "<br><br><a href='logout_page.php'>Logout</a>";
+    echo "<br><br><a href='logoutPage.php'>Logout</a>";
   } 
 
   else {
@@ -57,7 +57,7 @@
 			  echo "</td></tr>";
 		  }
     echo "</table>";
-  echo "<br><br><a href='logout_page.php'>Logout</a>";
+  echo "<br><br><a href='logoutPage.php'>Logout</a>";
   }
 ?>
 </body>

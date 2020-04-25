@@ -15,6 +15,9 @@
 				height: 200px;
 				background-color: dodgerblue;
 			}
+			.error{
+          color: #FF0000;
+        	}
 			a:link{
 				color:black;
 				text-decoration:none;
@@ -81,23 +84,28 @@
 			$correct = FALSE;
 	  }
 	  if ($correct === TRUE) {
-		  	$token = encrypt($confirmPassword);
+		  	$password = encrypt($password);
 			require_once 'accountClass.php';
 			$account = new Account();
-			$account->setAccount($username, $email, $token, $firstName, $lastName, $address, $city, $state, $zipCode);
-			$account->createAccount();
-			header("location: index.php");
-	  }
+			$account->setAccount($username, $email, $password, $firstName, $lastName, $address, $city, $state, $zipCode);
+			$result = $account->createAccount();
+			if (mysqli_num_rows($result) == 1) {
+				$logged_in_user = mysqli_fetch_assoc($result);
+			    $_SESSION['user'] = $logged_in_user;
+			    $_SESSION['success'] = "You are now logged in";
+				header('location: index.php'); // replace with the admin homepage
+			}
+		}
 
 	}
 
-    function encrypt($pass) {
-      $salt1 = "qm&h*";
-      $salt2 = "pg!@";
-      $token = hash('ripemd128', "$salt1$pass$salt2");
-      return $token;
-    }
-
+	function encrypt($pass) {
+        $salt1 = "qm&h*";
+        $salt2 = "pg!@";
+        $token = hash('ripemd128', "$salt1$pass$salt2");
+        return $token;
+	}
+	
     function sanitizeString($data) {
     $data = strip_tags($data);
     $data = stripslashes($data);
@@ -148,7 +156,7 @@
 		Please Confirm Email:
 		<br>
 		<input type="text" name= "confirmEmail" style="width:200px;"></input>
-		<span class="error"><?php echo $emailError; ?></span>
+		<span class="error"><br><?php echo $emailError; ?></span>
 		<br>
 		<br>
 
@@ -161,7 +169,7 @@
 		Please Confirm Password:
 		<br>
 		<input type="text" name="confirmPass" style="width:200px;"></input>
-		<span class="error"><?php echo $passError; ?></span>
+		<span class="error"><br><?php echo $passError; ?></span>
 		<br>
 		<br>
 

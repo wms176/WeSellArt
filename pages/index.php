@@ -148,7 +148,7 @@
 				$result = $conn->query($query);
 				while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
 				echo "<tr>
-					<td class='image'><img src='royaltyfreeart.jpg' alt='Picture of Art' width='100%'></td>";
+					<td class='image'><img src='source/royaltyfreeart.jpg' alt='Picture of Art' width='100%'></td>";
 					echo "<td class='artname'>".$row['title']."</td>";
 					//<td class="artname">Artname</td>
 					echo "<td class='artistname'>".$row['artist']."</td>";					
@@ -157,7 +157,8 @@
 //					<td class="artdesc">description</td>
 					echo "<td class='artprice'>".$row['price']."</td>";
 //					<td class="artprice">Price</td>
-					echo "<td class='carttable'><input class='addtocart' type='submit' onclick='window.location.href = 'itemview.php'' value='View Item'></input><br><input class='addtocart' type='submit' value='Add to Cart'></input></td>
+					$artID = $row['artID'];
+					echo "<td class='carttable'><input class='addtocart' type='submit' onclick=\"window.location.href = 'itemview.php?ID=$artID'\" value='View Item'></input><br><input class='addtocart' type='submit' value='Add to Cart'></input></td>
 				</tr>";
 				}					
 				echo "</table>";

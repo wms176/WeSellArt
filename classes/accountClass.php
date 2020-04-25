@@ -1,7 +1,7 @@
 <?php 
 
 class Account {
-    private $accountID;
+    private $userID;
     private $firstName;
     private $lastName;
     private $username;
@@ -14,67 +14,58 @@ class Account {
     private $zipCode;
     private $admin;
 
-    public function __construct(){ 
-        $this->userID = $userID;
-        $this->firstName = $firstName;
-        $this->lastName = $lastName;
-        $this->username = $username;
-        $this->password = hash('ripemd128', "$salt1$password$salt2");
-        $this->email = $email;
-        $this->address = $address;
-        $this->city = $city;
-        $this->state = $state;
-        $this->zipCode = $zipCode;
-        $this->admin = $admin;	
-    }
-                
-
-    public function isAdmin() {
-        if ($this->admin === TRUE) {
-            return TRUE;
-        }
-        else {
-            return FALSE;
-        }
-    }
-
     public function setAccount($username, $email, $password, $firstName, $lastName, $address, $city, $state, $zipCode){
+        $this->userID = NULL; 
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->username = $username;
-        $this->password = hash('ripemd128', "$password");
+        $this->password = encrypt($password);
         $this->email = $email;
         $this->address = $address;
         $this->city = $city;
         $this->state = $state;
         $this->zipCode = $zipCode;
-        $this->admin = FALSE;
+        $this->admin = NULL;	
+    }
+    
+    public function encrypt($pass) {
+        $salt1 = "qm&h*";
+        $salt2 = "pg!@";
+        $token = hash('ripemd128', "$salt1$pass$salt2");
+        return $token;
     }
 
     public function createAccount(){
         require_once 'login.php';
         $connection = new mysqli($hn, $un, $pw, $db);
-		$query = "INSERT INTO users (username, email, password, 
+		$query = "INSERT INTO users (userID, username, email, password, 
             firstName, LastName, address, city, state, zip, admin) 
-            VALUES ($this->username, $this->email, $this->password, 
-            $this->firstName, $this->lastName, $this->address, $this->city, 
-            $this->state, $this->zipCode, $this->admin)";
-        $result = $connection->query($query);
+            VALUES ('$this->userID', '$this->username', '$this->email', '$this->password', 
+            '$this->firstName', '$this->lastName', '$this->address', '$this->city', 
+            '$this->state', '$this->zipCode', '$this->admin')";
+        $return = $connection->query($query);
+        return $return;
 	}
 
-    function deleteAccount($username) {
+    public function deleteAccount($username) {
+        require_once 'login.php';
+        $connection = new mysqli($hn, $un, $pw, $db);
         $query = "DELETE * from users WHERE username = '$username'";
-        $result = $this->conn->query($query);    }
+        $connection->query($query);    }
 
-    function editAccount($username, $firstName, $lastName, $email, $address, $city, $state, $zipCode,) {
+    public function editAccount($username, $firstName, $lastName, $email, $address, $city, $state, $zipCode) {
+        require_once 'login.php';
+        $connection = new mysqli($hn, $un, $pw, $db);
         $query = "UPDATE users SET firstName = '$firstname', lastName = '$lastName', email = '$email', address = '$address', city = '$city', state = '$state', zip = '$zipCode' WHERE username = '$username'";
-        $result = $this->conn->query($query);    }
+        $connection->query($query);    }
 
-    function changePassword($username, $password) {
+    public function changePassword($username, $password) {
         $salt1 = "qm&h*";
         $salt2 = "pg!@";
         $token = hash('ripemd128', "$salt1$Password$salt2");
+        require_once 'login.php';
+        $connection = new mysqli($hn, $un, $pw, $db);
 
         $query = "UPDATE users SET password = '$token' WHERE username = '$username'";
-        $result = $this->conn->query($query);    }
+        $result = $connection->query($query);    }
 }

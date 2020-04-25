@@ -1,7 +1,7 @@
 <?php 
 		if(!isset($_SESSION['user'])) {
 			echo "<span class='error'>Please Login to access this page.</span>";
-			echo "<br><br><a href='login_page.php'>Login</a>";
+			echo "<br><br><a href='loginPage.php'>Login</a>";
 		  }		  
 		else {
 			$user = $_SESSION['user']['username'];
@@ -76,7 +76,7 @@
 
 		<input class="submit" type="submit" onclick="window.location.href = 'cartview.php'" value="Cart"></input>
 		
-		<input class="submit" type="submit" onclick="window.location.href='logout.php'" value="Logout"></input>
+		<input class="submit" type="submit" onclick="window.location.href='logoutPage.php'" value="Logout"></input>
 		<br><br>
 		<input class="submit" type="submit" onclick="window.location.href='account.php'" value="View Account"></input>
 		
