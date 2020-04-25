@@ -147,8 +147,8 @@
 				$query = "SELECT * FROM art";
 				$result = $conn->query($query);
 				while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
-				echo "<tr>
-					<td class='image'><img src='source/royaltyfreeart.jpg' alt='Picture of Art' width='100%'></td>";
+				echo "<tr> <td class='image'>";
+				echo "<img src=".$row['photo']."alt='Picture of Art' width='100%'></td>";
 					echo "<td class='artname'>".$row['title']."</td>";
 					//<td class="artname">Artname</td>
 					echo "<td class='artistname'>".$row['artist']."</td>";					
