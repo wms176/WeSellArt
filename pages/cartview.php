@@ -1,5 +1,4 @@
 <?php 
-		session_start();
 		if(!isset($_SESSION['user'])) {
 			header("location: loginPage.php");
 		  }		  
@@ -146,24 +145,40 @@
 			<input class="checkout" type="submit" onclick="window.location.href='checkout.php'" value="Checkout"></input>
 		</div>
 		<div class="listingtable">
-			<table class="actualtable">
+			<?php
+			require_once('login.php');
 				
-				<tr>
-					<td class="image"><img src="source/royaltyfreeart.jpg" alt="Picture of Art" width="100%"></td>
-					<td class="artname">Artname</td>
-					<td class="artistname">Artist</td>
-					<td class="artprice">Price</td>
-					<td class="carttable"><input class="addtocart" type="submit" onclick="window.location.href = 'itemview.php'" value="View Item"></input><br><input class="removefromcart" type="submit" value="Remove from Cart"></input></td>
-				</tr>
-				<tr>
-					<td class="image"><img src="source/royaltyfreeart.jpg" alt="Picture of Art" width="100%"></td>
-					<td class="artname">Artname</td>
-					<td class="artistname">Artist</td>
-					<td class="artprice">Price</td>
-					<td class="carttable"><input class="addtocart" type="submit" onclick="window.location.href = 'itemview.php'" value="View Item"></input><br><input class="removefromcart" type="submit" value="Remove from Cart"></input></td>
-				</tr>
+			$conn = new mysqli($hn, $un, $pw, $db);
+			
+			if($conn->connect_error)
+				die($conn->connect_error);
 				
-			</table>
+			echo "<table class='actualtable'>";
+				// NEEDS WORKING QUERY
+				
+				$query = ; 
+				
+				//
+				$result = $conn->query($query);
+				while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+				$photo = $row['photo'];
+				echo "<tr> <td class='image'>";
+				echo "<img src='$photo' alt='Picture of Art' width='100%'></td>";
+					echo "<td class='artname'>".$row['title']."</td>";
+					//<td class="artname">Artname</td>
+					echo "<td class='artistname'>".$row['artist']."</td>";					
+					//<td class="artistname">Artist</td>
+					
+//					<td class="artdesc">description</td>
+					echo "<td class='artprice'>".$row['price']."</td>";
+//					<td class="artprice">Price</td>
+					$artID = $row['artID'];
+					
+					if($_SESSION['user']['admin'] == 0)
+					
+				}					
+				echo "</table>";
+			?>
 		</div>
 	</div>
 </body>
