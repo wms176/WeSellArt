@@ -4,6 +4,9 @@
 		session_start();
 		if(!isset($_SESSION['user'])) {
 			header('location: loginPage.php');
+		}
+		else if ($_SESSION['user']['admin'] == 0) {
+			header('location: index.php');
 		}	  
 		else {
 			$user = $_SESSION['user']['username'];
@@ -139,8 +142,11 @@
           $admin = 'Yes';
         else
           $admin = 'No';
-        echo $admin;
-			  echo "</td></tr>";
+		echo $admin;
+		$userID = $row['userID'];
+		echo "</td><td>";
+		echo "<input class='submit' name='Delete' type='submit'  onclick=\"window.location.href = 'adminDelete.php?userID=$userID'\" value='Delete Account'></input>";
+		echo "</td></tr>";
 		  }
     echo "</table>";
   echo "<br><br><a href='inventory.php'>View/Edit inventory</a>";

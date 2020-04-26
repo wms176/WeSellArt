@@ -118,7 +118,8 @@
     $data = stripslashes($data);
     $data = htmlentities($data);
     return $data;
-    }
+	}
+	
   ?>
 	<div class="header">
 		<div class="title">
@@ -177,8 +178,10 @@
 		<br>
 		<br>
 		You must log back in for changes to take affect.
-		<br><input class="submit" name="Continue" type="submit" style="width:200px;" value="Continue"></input>
+		<br><br><input class="submit" name="Continue" type="submit" style="width:200px;" value="Continue"></input>
+		<br><br>
 		</form>
+		<input class="submit" name="Delete Account" type="submit"  onclick="window.location.href='deleteAccount.php'" style="width:200px;" value="Delete Account"></input>
 
 	</div>
 </body>

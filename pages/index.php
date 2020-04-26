@@ -157,9 +157,11 @@
 				die($conn->connect_error);
 				
 			echo "<table class='actualtable'>";
+
 				
 				$result = $conn->query($query);
 				while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+				echo "<tr><th>Image</th><th>Title</th><th>Artist</th><th>Price</th></tr>";
 				$photo = $row['photo'];
 				echo "<tr> <td class='image'>";
 				echo "<img src='$photo' alt='Picture of Art' width='100%'></td>";
