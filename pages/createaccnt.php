@@ -115,7 +115,7 @@
 		<div class="useroptions">
 		
 
-		<input class="submit" type="submit" onclick="window.location.href='login.php'" value="Login"></input>
+		<input class="submit" type="submit" onclick="window.location.href='loginPage.php'" value="Login"></input>
 
 	
 	
@@ -167,6 +167,7 @@
 		<br>
 
 		Please Enter Shipping Address:
+		<br>
 		<br>
 		Street:
 		<br>

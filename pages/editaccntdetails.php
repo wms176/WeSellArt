@@ -1,4 +1,5 @@
 <?php 
+		session_start();
 		if(!isset($_SESSION['user'])) {
 			header("location: loginPage.php");
 		  }		  
@@ -32,6 +33,9 @@
 				text-decoration:none;
 
 			}
+			.error{
+          		color: #FF0000;
+        	}
 			.title{
 				align: left;
 				position: absolute;
@@ -64,6 +68,58 @@
 </head>
 
 <body>
+<?php
+    if(isset($_POST['Continue'])){
+		
+      	$password = sanitizeString($_POST['password']);
+	  	$confirmPassword = sanitizeString($_POST['confirmpass']);
+	 	$address = sanitizeString($_POST['address']);
+	 	$city = sanitizeString($_POST['city']);
+	 	$state = sanitizeString($_POST['state']);
+	 	$zipCode = sanitizeString($_POST['zip']);
+	  
+	  	$correct = TRUE;
+		
+	  
+	  if ($password != $confirmPassword) {
+			$passError = "Your passwords do not match!";
+			$correct = FALSE;
+	  }
+	  if ($correct === TRUE) {
+		  	$userID = $_SESSION['user']['userID'];
+			$password = encrypt($password);
+			  
+			require_once 'login.php';
+			$connection = new mysqli($hn, $un, $pw, $db);
+
+        if ($connection->connect_error)
+			die($connection->connect_error);
+			
+		$query = "UPDATE users SET password='$password', address='$address', city='$city', state='$state', zip='$zipCode' WHERE userID='$userID'";
+		$result = $connection->query($query);
+		
+        if (!$result)
+			die($connection->error);
+			
+		header("location: logoutPage.php");
+		}
+
+	}
+
+	function encrypt($pass) {
+        $salt1 = "qm&h*";
+        $salt2 = "pg!@";
+        $token = hash('ripemd128', "$salt1$pass$salt2");
+        return $token;
+	}
+	
+    function sanitizeString($data) {
+    $data = strip_tags($data);
+    $data = stripslashes($data);
+    $data = htmlentities($data);
+    return $data;
+    }
+  ?>
 	<div class="header">
 		<div class="title">
 		<a href="index.php" ><h1>WeSellArt.com</h1></a>
@@ -79,43 +135,50 @@
 	
 	</div>
 	<div class="main">
-		<h3>Please Confirm Current Password:</h3>
+	<?php
+	$password = $_SESSION['user']['password'];
+	$address = $_SESSION['user']['address'];
+	$city = $_SESSION['user']['city'];
+	$state = $_SESSION['user']['state'];
+	$zipCode = $_SESSION['user']['zip'];
+
+	?>
+	<form method="post" action="editaccntdetails.php">
+		<br>You must fill out the password and comfirm password blanks.<br>
+		If you wish to keep the same password, enter it into the blanks below.<br><br>
+		Please Enter New Password:
 		<br>
-		<input type="text" style="width:200px;"></input>
+		<input type="text" name="password" style="width:200px;"></input><br>
 		<br>
-		<h3>Please Enter New Password:</h3>
+		Please Confirm New Password:
 		<br>
-		<input type="text" style="width:200px;"></input>
-		<br>
-		<h3>Please Confirm New Password:</h3>
-		<br>
-		<input type="text" style="width:200px;"></input>
-		<br>
-		<br>
-		<h3>Please Enter Shipping Address:</h3>
-		<br>
-		<h4>Street</h4>
-		<br>
-		<input type="text" style="width:200px;"></input>
-		<br>
-		<h4>City</h4>
-		<br>
-		<input type="text" style="width:200px;"></input>
-		<br>
-		<h4>State</h4>
-		<br>
-		<input type="text" style="width:200px;"></input>
-		<br>
-		<h4>Country</h4>
-		<br>
-		<input type="text" style="width:200px;"></input>
-		<br>
-		<h4>Zip Code</h4>
-		<br>
-		<input type="text" style="width:200px;"></input>
+		<input type="text" name="confirmpass" style="width:200px;"></input>
+		<span class="error"><br><?php echo $passError; ?></span>
 		<br>
 		<br>
-		<input class="submit" type="submit" style="width:200px;" onclick="window.location.href='account.php'" value="Continue"></input>
+		Please Enter Shipping Address:
+		<br>
+		<br>
+		Street:
+		<br>
+		<input type="text" name="address" value="<?php echo $address;?>" style="width:200px;"></input>
+		<br>
+		City:
+		<br>
+		<input type="text" name="city" value="<?php echo $city;?>" style="width:200px;"></input>
+		<br>
+		State:
+		<br>
+		<input type="text" name="state" value="<?php echo $state;?>" style="width:200px;"></input>
+		<br>
+		Zipcode:
+		<br>
+		<input type="text" name="zip" value="<?php echo $zipCode;?>" style="width:200px;"></input>
+		<br>
+		<br>
+		You must log back in for changes to take affect.
+		<br><input class="submit" name="Continue" type="submit" style="width:200px;" value="Continue"></input>
+		</form>
 
 	</div>
 </body>
